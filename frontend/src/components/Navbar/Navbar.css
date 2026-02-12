@@ -1,0 +1,37 @@
+nav {
+	display: flex;
+	justify-content: space-between;
+	position: fixed;
+	z-index: 1;
+	width: 100%;
+	top: 0;
+	height: 100px;
+	padding-left: 60px;
+	padding-right: 60px;
+	align-items: center;
+	color: var(--color-navbar-text);
+	/* background-color: var(--c-secondary); */
+	font-family: "Alegreya Sans", sans-serif;
+	font-weight: 800;
+	font-size: 1.25rem;
+
+	.links-container {
+		display: flex;
+		gap: 3rem;
+		a {
+			color: inherit;
+		}
+		a:hover {
+			color: var(--c-accent);
+		}
+		a.selected-link {
+			color: var(--color-navbar-text-hover);
+		}
+	}
+	.sign-in {
+		color: inherit;
+	}
+	.sign-in:hover {
+		color: var(--color-navbar-text-hover);
+	}
+}
