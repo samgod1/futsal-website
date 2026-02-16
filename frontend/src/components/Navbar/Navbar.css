@@ -1,11 +1,17 @@
+nav.fixed {
+	position: fixed;
+	background-color: transparent;
+}
+
 nav {
+	background-color: var(--c-secondary);
 	display: flex;
 	justify-content: space-between;
-	position: fixed;
-	z-index: 1;
+	position: sticky;
+	z-index: 10;
 	width: 100%;
 	top: 0;
-	height: 100px;
+	height: 75px;
 	padding-left: 60px;
 	padding-right: 60px;
 	align-items: center;
@@ -32,6 +38,9 @@ nav {
 		color: inherit;
 	}
 	.sign-in:hover {
+		color: var(--color-navbar-text-hover);
+	}
+	.sign-in.selected-link {
 		color: var(--color-navbar-text-hover);
 	}
 }

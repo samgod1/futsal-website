@@ -1,0 +1,20 @@
+.map-container {
+	position: relative;
+
+	.google-maps-link {
+		background-color: var(--c-primary);
+		border-radius: 0.5rem;
+		font-size: 1.25rem;
+		cursor: pointer;
+		display: inline-flex;
+		gap: 0.25rem;
+		justify-content: center;
+		align-items: center;
+		padding: 0.5rem;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		z-index: 2;
+		margin: 1rem;
+	}
+}

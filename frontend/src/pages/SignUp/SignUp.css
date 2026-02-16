@@ -1,0 +1,87 @@
+.page {
+	display: flex;
+	flex-direction: column;
+	height: 100dvh;
+	font-family: "Inter";
+	background-color: var(--c-primary);
+
+	.signup {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-grow: 1;
+
+		.wrapper {
+			background-color: var(--c-white);
+			padding: 2rem;
+			border-radius: 1rem;
+			box-shadow: 5px 3px 3px rgba(0, 0, 0, 0.08);
+			border: 1px solid var(--c-gray);
+
+			form {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+
+				.text-container {
+					color: var(--c-secondary);
+					margin-bottom: 2rem;
+
+					h2 {
+						text-align: center;
+						font-size: 3rem;
+						font-family: "Alegreya Sans";
+					}
+				}
+
+				.input-container {
+					display: flex;
+					flex-direction: column;
+					gap: 0.5rem;
+					margin-bottom: 1rem;
+
+					.input-group {
+						display: flex;
+
+						.icon {
+							background-color: var(--c-secondary);
+							color: var(--c-primary);
+							font-size: 1.5rem;
+							padding: 0.5rem;
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							border-radius: 0.5rem 0rem 0 0.5rem;
+						}
+
+						input {
+							font-size: 1.5rem;
+							border-left: none;
+							border: 1px solid var(--c-secondary);
+							outline: none;
+							padding: 0.5rem;
+							border-radius: 0rem 0.5rem 0.5rem 0rem;
+						}
+					}
+				}
+				button {
+					color: var(--c-primary);
+					background-color: var(--c-secondary);
+					padding: 0.5rem 1.5rem;
+					align-self: center;
+					font-size: 1.5rem;
+					border-radius: 0.25rem;
+					cursor: pointer;
+					margin-bottom: 1rem;
+				}
+			}
+
+			p {
+				text-align: center;
+				a {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}

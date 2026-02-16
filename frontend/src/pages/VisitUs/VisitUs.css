@@ -1,0 +1,62 @@
+.visit-us {
+	padding: 2rem 5rem;
+	font-family: "Inter";
+	display: flex;
+	flex-direction: column;
+	gap: 2.5rem;
+
+	.available-facilities {
+		h2 {
+			text-align: center;
+			font-size: 3rem;
+			margin-bottom: 1.5rem;
+			color: var(--c-secondary);
+		}
+		.facilities {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			gap: 1.5rem;
+
+			.facility {
+				background-color: var(--c-white);
+				padding: 2rem;
+				border-radius: 1rem;
+				display: flex;
+				flex-direction: column;
+				gap: 0.75rem;
+				box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.08);
+				font-family: "Inter";
+				border: 1px solid var(--c-gray);
+				display: grid;
+				grid-template-rows: subgrid;
+				grid-row: span 2;
+
+				h3 {
+					color: var(--c-secondary);
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					font-weight: 600;
+					gap: 0.5rem;
+					font-size: 2rem;
+				}
+
+				p {
+					font-size: 1rem;
+					color: var(--c-secondary);
+				}
+			}
+		}
+	}
+
+	.social-media {
+		h2 {
+			text-align: center;
+		}
+		div {
+			display: flex;
+			justify-content: center;
+			gap: 0.5rem;
+		}
+	}
+}

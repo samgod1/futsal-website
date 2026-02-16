@@ -1,10 +1,15 @@
 import { Link, useLocation } from "react-router-dom";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+import { useGSAP } from "@gsap/react";
 
 import "./Navbar.css";
-import { useEffect } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Navbar = () => {
 	const location = useLocation();
+
 	function isActive(path) {
 		if (path === location.pathname) {
 			return true;
@@ -12,8 +17,22 @@ const Navbar = () => {
 
 		return false;
 	}
+
+	useGSAP(() => {
+		if (location.pathname === "/") {
+			gsap.to("nav", {
+				backdropFilter: "blur(25px)",
+				scrollTrigger: {
+					trigger: "nav",
+					start: "center top",
+					toggleActions: "play none none reverse",
+				},
+			});
+		}
+	}, [location.pathname]);
+
 	return (
-		<nav>
+		<nav className={isActive("/") ? "fixed" : ""}>
 			<div className="website-name">KUMARI FUTSAL</div>
 			<div className="links-container">
 				<Link className={isActive("/") ? "selected-link" : ""} to="/">
@@ -26,15 +45,15 @@ const Navbar = () => {
 					VISIT US
 				</Link>
 				<Link
-					className={isActive("/book-session") ? "selected-link" : ""}
-					to="/book-session"
+					className={isActive("/book-game") ? "selected-link" : ""}
+					to="/book-game"
 				>
-					BOOK SESSION
+					BOOK GAME
 				</Link>
 			</div>
 			<Link
-				className={isActive("/sign-in") ? "sign-in selected-link" : "sign-in"}
-				to={"/sign-in"}
+				className={isActive("/signin") ? "sign-in selected-link" : "sign-in"}
+				to={"/signin"}
 			>
 				SIGN IN
 			</Link>

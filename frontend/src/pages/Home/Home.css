@@ -96,10 +96,8 @@
 			grid-template-columns: 1fr 1fr;
 			height: 100%;
 			gap: 1.5rem;
-			padding: 1rem 1.5rem;
 
 			.text-group {
-				width: 100%;
 				background-color: var(--c-white);
 				padding: 2rem;
 				border-radius: 1rem;
