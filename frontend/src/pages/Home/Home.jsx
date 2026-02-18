@@ -1,6 +1,7 @@
 import { FaLocationCrosshairs } from "react-icons/fa6";
 import { MdAccessTimeFilled } from "react-icons/md";
 import { FaMoneyBill, FaPhoneAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 import "./Home.css";
 import Navbar from "../../components/Navbar/Navbar";
@@ -20,7 +21,7 @@ const Home = () => {
 						late-night battle under the lights, your perfect pitch is just a few
 						taps away. Grab your squad, lace up, and let's play!
 					</p>
-					<button>Book now</button>
+					<Link to={"/book-game"}>Book now</Link>
 				</div>
 			</section>
 			<section className="quick-stats">

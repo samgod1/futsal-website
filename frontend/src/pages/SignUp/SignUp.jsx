@@ -4,14 +4,25 @@ import { MdAlternateEmail, MdLock } from "react-icons/md";
 
 import Navbar from "../../components/Navbar/Navbar";
 import "./SignUp.css";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext.jsx";
 
 const SignUp = () => {
+	const { handleSignUp } = useContext(UserContext);
+
+	function handleSubmit(e) {
+		e.preventDefault();
+
+		const formData = Object.fromEntries(new FormData(e.target));
+
+		handleSignUp(formData);
+	}
 	return (
 		<div className="page">
 			<Navbar />
 			<main className="signup">
 				<div className="wrapper">
-					<form>
+					<form onSubmit={handleSubmit}>
 						<div className="text-container">
 							<h2>SignUp</h2>
 							<p>Let's get you on side</p>

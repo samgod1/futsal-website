@@ -23,7 +23,7 @@ const BookingCard = ({ day }) => {
 			<div className="day">{day}</div>
 			<div className="available-times">
 				{time.map((t) => (
-					<div className="time">{t}</div>
+					<button className="time">{t}</button>
 				))}
 			</div>
 		</div>

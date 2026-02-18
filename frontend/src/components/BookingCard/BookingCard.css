@@ -4,13 +4,31 @@
 	gap: 1.5rem;
 	overflow: hidden;
 
+	.day {
+		min-width: 5rem;
+		text-align: center;
+	}
+
 	.available-times {
 		display: flex;
 		gap: 1rem;
+		overflow: scroll;
 
 		.time {
 			background-color: green;
 			white-space: nowrap;
+			padding: 0.75rem;
+			color: var(--c-primary);
+			border-radius: 0.5rem;
+			cursor: pointer;
 		}
+
+		.time.unavailable {
+			background-color: red;
+		}
+	}
+
+	.available-times::-webkit-scrollbar {
+		display: none;
 	}
 }

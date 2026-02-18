@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 import "./App.css";
 import Home from "./pages/Home/Home";
@@ -30,7 +31,12 @@ const App = () => {
 			element: <SignUp />,
 		},
 	]);
-	return <RouterProvider router={router} />;
+	return (
+		<>
+			<RouterProvider router={router} />
+			<Toaster />
+		</>
+	);
 };
 
 export default App;
