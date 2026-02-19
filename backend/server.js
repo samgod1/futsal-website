@@ -17,7 +17,6 @@ app.get("/", (req, res) => {
 	res.send("hello world");
 });
 app.use("/api/auth", authRoutes);
-
 //for production merge frontend and backend
 //app.use(express.static(path.join(dirname, ../frontend/dist)))
 // if (process.env.PRODUCTION) {

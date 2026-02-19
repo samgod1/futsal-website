@@ -1,17 +1,28 @@
-import React from "react";
+import { useContext } from "react";
 
 import Navbar from "../../components/Navbar/Navbar";
 import { MdAlternateEmail, MdLock } from "react-icons/md";
 import "./SignIn.css";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../contexts/UserContext";
 
 const SignIn = () => {
+	const { handleSignIn } = useContext(UserContext);
+
+	function handleSubmit(e) {
+		e.preventDefault();
+
+		const formData = Object.fromEntries(new FormData(e.target));
+
+		handleSignIn(formData);
+	}
+
 	return (
 		<div className="page">
 			<Navbar />
 			<main className="signin">
 				<div className="wrapper">
-					<form>
+					<form onSubmit={handleSubmit}>
 						<div className="text-container">
 							<h2>SignIn</h2>
 							<p>Let's get you on side</p>

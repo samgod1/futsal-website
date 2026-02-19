@@ -1,19 +1,28 @@
 import { createContext, useContext, useState } from "react";
-import { signup } from "../apis/auth";
+import { signin, signup } from "../apis/auth";
 
 export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-	const [user, setUser] = useState();
+	const [user, setUser] = useState(null);
+	const [loading, setLoading] = useState(true);
 
-	const handleSignUp = async (formData) => {
+	async function handleSignUp(formData) {
 		const data = await signup(formData);
 		setUser(data);
-		console.log(data);
-	};
+		setLoading(false);
+	}
+
+	async function handleSignIn(formData) {
+		const data = await signin(formData);
+		setUser(data);
+		setLoading(false);
+	}
+
+	async function handleLogout() {}
 
 	return (
-		<UserContext.Provider value={{ user, handleSignUp }}>
+		<UserContext.Provider value={{ user, loading, handleSignUp, handleSignIn }}>
 			{children}
 		</UserContext.Provider>
 	);

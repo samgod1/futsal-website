@@ -67,11 +67,44 @@ export async function signup(req, res) {
 
 		generateToken(res, newUser._id);
 
-		return res.status(201).json({ userId: newUser._id, email: newUser.email });
+		return res.status(201).json({
+			userId: newUser._id,
+			username: newUser.username,
+			email: newUser.email,
+		});
 	} catch (e) {
 		console.log(e);
 		return res.status(500).json({ message: "Oops! something went wrong" });
 	}
 }
 
-export async function signin(req, res) {}
+export async function signin(req, res) {
+	try {
+		const { email, password } = req.body;
+
+		if (!email || !password) {
+			return res.status(400).json({ message: "All fields are required" });
+		}
+
+		const user = await User.findOne({ email: email });
+
+		if (!user) {
+			return res.status(401).json({ message: "Invalid credentials" });
+		}
+
+		const isCorrect = await bcrypt.compare(password, user.password);
+
+		if (!isCorrect) {
+			return res.status(401).json({ message: "Invalid credentials" });
+		}
+
+		generateToken(res, user._id);
+
+		return res
+			.status(200)
+			.json({ userId: user._id, email: user.email, password: user.password });
+	} catch (e) {
+		console.log(e);
+		return res.status(500).json("Oops! something went wrong");
+	}
+}
