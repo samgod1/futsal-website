@@ -1,6 +1,6 @@
 import "./BookGame.css";
 import BookingCard from "../../components/BookingCard/BookingCard";
-import Navbar from "../../components/Navbar/Navbar";
+import MainLayout from "../../layouts/MainLayout";
 
 const BookGame = () => {
 	const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -9,8 +9,7 @@ const BookGame = () => {
 	const bookingsMade = false;
 
 	return (
-		<div className="page">
-			<Navbar />
+		<MainLayout page={"book-game-page"}>
 			<main className="book-game">
 				<section className="available-booking">
 					<h2>Available Bookings</h2>
@@ -31,7 +30,7 @@ const BookGame = () => {
 					)}
 				</section>
 			</main>
-		</div>
+		</MainLayout>
 	);
 };
 

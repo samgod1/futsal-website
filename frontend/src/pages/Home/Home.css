@@ -29,7 +29,7 @@
 				background: linear-gradient(
 					to top right,
 					rgba(63, 42, 86, 0.7) 0%,
-					/* Your secondary purple at 70% opacity */ rgba(0, 0, 0, 0) 60%
+					rgba(0, 0, 0, 0) 60%
 				);
 			}
 		}
@@ -43,7 +43,6 @@
 			h1 {
 				font-size: 4.5rem;
 				line-height: 4.5rem;
-				/* text-shadow: 1.5px 1.5px 5px black; */
 				letter-spacing: -1px;
 			}
 			p {
@@ -51,7 +50,6 @@
 				font-weight: normal;
 				width: 35rem;
 				margin-bottom: 1.75rem;
-				/* text-shadow: 0.75px 0.75px 3px black; */
 			}
 			a {
 				color: var(--color-hero-button-text);

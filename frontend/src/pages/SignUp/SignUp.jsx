@@ -6,6 +6,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import "./SignUp.css";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext.jsx";
+import MainLayout from "../../layouts/MainLayout.jsx";
 
 const SignUp = () => {
 	const { handleSignUp } = useContext(UserContext);
@@ -18,8 +19,7 @@ const SignUp = () => {
 		handleSignUp(formData);
 	}
 	return (
-		<div className="page">
-			<Navbar />
+		<MainLayout page={"signup-page"}>
 			<main className="signup">
 				<div className="wrapper">
 					<form onSubmit={handleSubmit}>
@@ -80,7 +80,7 @@ const SignUp = () => {
 					</p>
 				</div>
 			</main>
-		</div>
+		</MainLayout>
 	);
 };
 

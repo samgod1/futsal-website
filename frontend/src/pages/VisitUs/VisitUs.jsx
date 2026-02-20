@@ -4,11 +4,11 @@ import { FaCarAlt } from "react-icons/fa";
 import Navbar from "../../components/Navbar/Navbar";
 import Map from "../../components/Map/Map";
 import "./VisitUs.css";
+import MainLayout from "../../layouts/MainLayout";
 
 const VisitUs = () => {
 	return (
-		<div>
-			<Navbar />
+		<MainLayout page={"visit-us-page"}>
 			<main className="visit-us">
 				<Map />
 				<section className="available-facilities">
@@ -64,7 +64,7 @@ const VisitUs = () => {
 					</div>
 				</section>
 			</main>
-		</div>
+		</MainLayout>
 	);
 };
 

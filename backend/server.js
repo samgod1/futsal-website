@@ -3,7 +3,9 @@ import { config } from "dotenv";
 import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/auth.route.js";
+import userRoutes from "./routes/user.route.js";
 import connectToDB from "./config/database.js";
+import protectRoute from "./middlewares/protectRoute.js";
 
 const app = express();
 
@@ -17,6 +19,7 @@ app.get("/", (req, res) => {
 	res.send("hello world");
 });
 app.use("/api/auth", authRoutes);
+app.use("/api/user", protectRoute, userRoutes);
 //for production merge frontend and backend
 //app.use(express.static(path.join(dirname, ../frontend/dist)))
 // if (process.env.PRODUCTION) {

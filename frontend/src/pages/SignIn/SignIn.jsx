@@ -5,6 +5,7 @@ import { MdAlternateEmail, MdLock } from "react-icons/md";
 import "./SignIn.css";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
+import MainLayout from "../../layouts/MainLayout";
 
 const SignIn = () => {
 	const { handleSignIn } = useContext(UserContext);
@@ -18,8 +19,7 @@ const SignIn = () => {
 	}
 
 	return (
-		<div className="page">
-			<Navbar />
+		<MainLayout page={"signin-page"}>
 			<main className="signin">
 				<div className="wrapper">
 					<form onSubmit={handleSubmit}>
@@ -58,7 +58,7 @@ const SignIn = () => {
 					</p>
 				</div>
 			</main>
-		</div>
+		</MainLayout>
 	);
 };
 

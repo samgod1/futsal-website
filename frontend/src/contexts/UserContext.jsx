@@ -1,5 +1,6 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { signin, signup } from "../apis/auth";
+import { getUserData } from "../apis/user";
 
 export const UserContext = createContext();
 
@@ -20,6 +21,16 @@ const UserProvider = ({ children }) => {
 	}
 
 	async function handleLogout() {}
+
+	async function handleFetchUserData() {
+		const data = await getUserData();
+		setUser(data);
+		setLoading(false);
+	}
+
+	useEffect(() => {
+		handleFetchUserData();
+	}, []);
 
 	return (
 		<UserContext.Provider value={{ user, loading, handleSignUp, handleSignIn }}>
