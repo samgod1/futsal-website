@@ -1,12 +1,25 @@
+import { useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
+
 import "./BookGame.css";
 import BookingCard from "../../components/BookingCard/BookingCard";
 import MainLayout from "../../layouts/MainLayout";
+import { UserContext } from "../../contexts/UserContext";
 
 const BookGame = () => {
+	const { user } = useContext(UserContext);
+	const navigate = useNavigate();
+
 	const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 	const bookings = [{ day: "Sun", ground: "A", time: "12:00AM" }];
 
 	const bookingsMade = false;
+
+	useEffect(() => {
+		if (!user) {
+			navigate("/signup");
+		}
+	}, []);
 
 	return (
 		<MainLayout page={"book-game-page"}>

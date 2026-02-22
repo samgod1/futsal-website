@@ -6,7 +6,6 @@ import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 
 import "./Home.css";
-import Navbar from "../../components/Navbar/Navbar";
 import Loading from "../../components/Loading/Loading";
 import MainLayout from "../../layouts/MainLayout";
 
