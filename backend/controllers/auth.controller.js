@@ -102,9 +102,25 @@ export async function signin(req, res) {
 
 		return res
 			.status(200)
-			.json({ userId: user._id, email: user.email, password: user.password });
+			.json({ userId: user._id, email: user.email, username: user.username });
 	} catch (e) {
 		console.log(e);
 		return res.status(500).json("Oops! something went wrong");
+	}
+}
+
+export async function logout(req, res) {
+	try {
+		res.cookie("token", "", {
+			httpOnly: true,
+			secure: process.env.PRODUCTION === "true",
+			sameSite: process.env.PRODUCTION === "true" ? "strict" : "none",
+			maxAge: 0,
+		});
+
+		return res.status(200).json({ message: "Logout Successful" });
+	} catch (e) {
+		console.log(e);
+		return res.status(500).json({ message: "Oops! something went wrong" });
 	}
 }

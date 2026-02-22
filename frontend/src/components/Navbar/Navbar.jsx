@@ -1,14 +1,20 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useGSAP } from "@gsap/react";
+import { useEffect, useRef, useState } from "react";
 
 import "./Navbar.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Navbar = () => {
+const Navbar = ({ user, handleLogout }) => {
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+	const dropdownRef = useRef();
+
 	const location = useLocation();
+	const navigate = useNavigate();
 
 	function isActive(path) {
 		if (path === location.pathname) {
@@ -16,6 +22,10 @@ const Navbar = () => {
 		}
 
 		return false;
+	}
+
+	function handleUsernameClick() {
+		setIsDropdownOpen(true);
 	}
 
 	useGSAP(() => {
@@ -30,6 +40,38 @@ const Navbar = () => {
 			});
 		}
 	}, [location.pathname]);
+
+	useGSAP(() => {
+		if (isDropdownOpen) {
+			gsap.to(".dropdown", {
+				display: "flex",
+			});
+		} else {
+			gsap.to(".dropdown", {
+				display: "none",
+			});
+		}
+	}, [isDropdownOpen]);
+
+	useEffect(() => {
+		if (!isDropdownOpen) {
+			return;
+		}
+
+		function handleMousedown(e) {
+			if (!dropdownRef.current.contains(e.target)) {
+				setIsDropdownOpen(false);
+			}
+		}
+
+		if (isDropdownOpen) {
+			document.addEventListener("mousedown", handleMousedown);
+		}
+
+		return () => {
+			document.removeEventListener("mousedown", handleMousedown);
+		};
+	}, [isDropdownOpen]);
 
 	return (
 		<nav className={isActive("/") ? "fixed" : ""}>
@@ -51,12 +93,29 @@ const Navbar = () => {
 					BOOK GAME
 				</Link>
 			</div>
-			<Link
-				className={isActive("/signin") ? "sign-in selected-link" : "sign-in"}
-				to={"/signin"}
-			>
-				SIGN IN
-			</Link>
+			{user ? (
+				<div className="username-wrapper" onClick={handleUsernameClick}>
+					<div className="username">{user.username.toUpperCase()}</div>
+
+					<div className="dropdown" ref={dropdownRef}>
+						<button
+							className="logout"
+							onClick={() => {
+								handleLogout(navigate);
+							}}
+						>
+							Logout
+						</button>
+					</div>
+				</div>
+			) : (
+				<Link
+					className={isActive("/signin") ? "sign-in selected-link" : "sign-in"}
+					to={"/signin"}
+				>
+					SIGN IN
+				</Link>
+			)}
 		</nav>
 	);
 };

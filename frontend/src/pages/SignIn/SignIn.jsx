@@ -1,21 +1,21 @@
 import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-import Navbar from "../../components/Navbar/Navbar";
 import { MdAlternateEmail, MdLock } from "react-icons/md";
 import "./SignIn.css";
-import { Link } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import MainLayout from "../../layouts/MainLayout";
 
 const SignIn = () => {
 	const { handleSignIn } = useContext(UserContext);
+	const navigate = useNavigate();
 
 	function handleSubmit(e) {
 		e.preventDefault();
 
 		const formData = Object.fromEntries(new FormData(e.target));
 
-		handleSignIn(formData);
+		handleSignIn(formData, navigate);
 	}
 
 	return (

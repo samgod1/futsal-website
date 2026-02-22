@@ -24,3 +24,15 @@ export async function signin(formData) {
 		return null;
 	}
 }
+
+export async function logout() {
+	try {
+		const response = await axios.post("/api/auth/logout", {});
+		toast.success(response.data.message);
+		return "successful";
+	} catch (e) {
+		console.log(e);
+		toast.error(e?.response?.data?.message || e.message);
+		return null;
+	}
+}

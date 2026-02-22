@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { MdAlternateEmail, MdLock } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
-import Navbar from "../../components/Navbar/Navbar";
 import "./SignUp.css";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext.jsx";
@@ -10,13 +10,14 @@ import MainLayout from "../../layouts/MainLayout.jsx";
 
 const SignUp = () => {
 	const { handleSignUp } = useContext(UserContext);
+	const navigate = useNavigate();
 
 	function handleSubmit(e) {
 		e.preventDefault();
 
 		const formData = Object.fromEntries(new FormData(e.target));
 
-		handleSignUp(formData);
+		handleSignUp(formData, navigate);
 	}
 	return (
 		<MainLayout page={"signup-page"}>

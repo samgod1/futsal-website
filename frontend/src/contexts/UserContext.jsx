@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { signin, signup } from "../apis/auth";
+import { logout, signin, signup } from "../apis/auth";
 import { getUserData } from "../apis/user";
+import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext();
 
@@ -8,19 +9,34 @@ const UserProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const [loading, setLoading] = useState(true);
 
-	async function handleSignUp(formData) {
+	async function handleSignUp(formData, navigate) {
 		const data = await signup(formData);
+		if (!data) {
+			return;
+		}
 		setUser(data);
 		setLoading(false);
+		navigate("/book-game");
 	}
 
-	async function handleSignIn(formData) {
+	async function handleSignIn(formData, navigate) {
 		const data = await signin(formData);
+		if (!data) {
+			return;
+		}
 		setUser(data);
 		setLoading(false);
+		navigate("/book-game");
 	}
 
-	async function handleLogout() {}
+	async function handleLogout(navigate) {
+		const data = await logout();
+		if (!data) {
+			return;
+		}
+		setUser(null);
+		navigate("/");
+	}
 
 	async function handleFetchUserData() {
 		const data = await getUserData();
@@ -33,7 +49,9 @@ const UserProvider = ({ children }) => {
 	}, []);
 
 	return (
-		<UserContext.Provider value={{ user, loading, handleSignUp, handleSignIn }}>
+		<UserContext.Provider
+			value={{ user, loading, handleSignUp, handleSignIn, handleLogout }}
+		>
 			{children}
 		</UserContext.Provider>
 	);

@@ -34,6 +34,24 @@ nav {
 			color: var(--color-navbar-text-hover);
 		}
 	}
+
+	.username-wrapper {
+		position: relative;
+
+		.dropdown {
+			display: none;
+			position: absolute;
+			top: 3rem;
+			background-color: blue;
+			button {
+				cursor: pointer;
+			}
+		}
+	}
+	.username:hover {
+		color: var(--c-accent);
+		cursor: pointer;
+	}
 	.sign-in {
 		color: inherit;
 	}
