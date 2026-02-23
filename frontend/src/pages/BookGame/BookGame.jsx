@@ -8,7 +8,7 @@ import MainLayout from "../../layouts/MainLayout";
 import { UserContext } from "../../contexts/UserContext";
 
 const BookGame = () => {
-	const { user } = useContext(UserContext);
+	const { user, loading } = useContext(UserContext);
 	const navigate = useNavigate();
 
 	const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -17,11 +17,11 @@ const BookGame = () => {
 	const bookingsMade = false;
 
 	useEffect(() => {
-		if (!user) {
+		if (!loading && !user) {
 			navigate("/signup");
 			toast("You need to signup/signin first");
 		}
-	}, []);
+	}, [loading]);
 
 	return (
 		<MainLayout page={"book-game-page"}>
