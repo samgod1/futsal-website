@@ -41,23 +41,10 @@ const Navbar = ({ user, handleLogout }) => {
 		}
 	}, [location.pathname]);
 
-	useGSAP(() => {
-		if (isDropdownOpen) {
-			gsap.to(".dropdown", {
-				display: "flex",
-			});
-		} else {
-			gsap.to(".dropdown", {
-				display: "none",
-			});
-		}
-	}, [isDropdownOpen]);
-
 	useEffect(() => {
 		if (!isDropdownOpen) {
 			return;
 		}
-
 		function handleMousedown(e) {
 			if (!dropdownRef.current.contains(e.target)) {
 				setIsDropdownOpen(false);
@@ -94,19 +81,25 @@ const Navbar = ({ user, handleLogout }) => {
 				</Link>
 			</div>
 			{user ? (
-				<div className="username-wrapper" onClick={handleUsernameClick}>
+				<div
+					className="username-wrapper"
+					ref={dropdownRef}
+					onClick={handleUsernameClick}
+				>
 					<div className="username">{user.username.toUpperCase()}</div>
 
-					<div className="dropdown" ref={dropdownRef}>
-						<button
-							className="logout"
-							onClick={() => {
-								handleLogout(navigate);
-							}}
-						>
-							Logout
-						</button>
-					</div>
+					{isDropdownOpen && (
+						<div className="dropdown">
+							<button
+								className="logout"
+								onClick={() => {
+									handleLogout(navigate);
+								}}
+							>
+								Logout
+							</button>
+						</div>
+					)}
 				</div>
 			) : (
 				<Link

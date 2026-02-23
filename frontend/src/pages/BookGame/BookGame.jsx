@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
+import toast from "react-hot-toast";
 
 import "./BookGame.css";
 import BookingCard from "../../components/BookingCard/BookingCard";
@@ -18,6 +19,7 @@ const BookGame = () => {
 	useEffect(() => {
 		if (!user) {
 			navigate("/signup");
+			toast("You need to signup/signin first");
 		}
 	}, []);
 

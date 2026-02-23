@@ -39,12 +39,14 @@ nav {
 		position: relative;
 
 		.dropdown {
-			display: none;
 			position: absolute;
-			top: 3rem;
-			background-color: blue;
-			button {
+			top: 2rem;
+			border-radius: 0.25rem;
+			overflow: hidden;
+			.logout {
+				background-color: red;
 				cursor: pointer;
+				padding: 0.25rem 0.5rem;
 			}
 		}
 	}
