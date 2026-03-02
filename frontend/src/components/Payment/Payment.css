@@ -1,0 +1,43 @@
+.background {
+	position: fixed;
+	inset: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	backdrop-filter: blur(2px);
+
+	.wrapper {
+		background-color: var(--c-primary);
+		border: 1px solid var(--c-gray);
+		border-radius: 0.75rem;
+		padding: 1.5rem;
+		width: 20rem;
+
+		h1 {
+			text-align: center;
+			padding-bottom: 1rem;
+		}
+
+		div {
+			.title {
+				font-weight: 600;
+			}
+			font-size: 1.5rem;
+			padding-bottom: 0.25rem;
+		}
+
+		button {
+			display: block;
+			color: var(--c-secondary);
+			background-color: var(--c-accent);
+			padding: 0.75rem 1.25rem;
+			cursor: pointer;
+			border-radius: 0.5rem;
+			font-weight: bold;
+			margin-top: 0.5rem;
+			margin-left: auto;
+			margin-right: auto;
+			font-size: 1.5rem;
+		}
+	}
+}

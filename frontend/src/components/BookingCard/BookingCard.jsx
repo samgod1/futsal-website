@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./BookingCard.css";
+import { PaymentContext } from "../../contexts/PaymentContext";
 
 const BookingCard = ({ day }) => {
 	const time = [
@@ -18,12 +19,16 @@ const BookingCard = ({ day }) => {
 		"8:00PM",
 	];
 
+	const { handlePaymentOpen } = useContext(PaymentContext);
+
 	return (
 		<div className="card">
 			<div className="day">{day}</div>
 			<div className="available-times">
 				{time.map((t) => (
-					<button className="time">{t}</button>
+					<button className="time" onClick={() => handlePaymentOpen(day, t)}>
+						{t}
+					</button>
 				))}
 			</div>
 		</div>
