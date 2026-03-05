@@ -8,16 +8,20 @@ import MainLayout from "../../layouts/MainLayout";
 import { UserContext } from "../../contexts/UserContext";
 import Payment from "../../components/Payment/Payment";
 import { PaymentContext } from "../../contexts/PaymentContext";
+import generateDates from "../../utils/generateDates";
+import { BookingContext } from "../../contexts/BookingContext";
+import BookedCard from "../../components/BookedCard/BookedCard";
 
 const BookGame = () => {
 	const { user, loading } = useContext(UserContext);
 	const { isPaymentOpen, handleVerifyPaymentAndPaymentStatus } =
 		useContext(PaymentContext);
+	const { bookings } = useContext(BookingContext);
+
 	const navigate = useNavigate();
 	const [searchParams] = useSearchParams("data");
 
-	const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-	const bookings = [{ day: "Sun", time: "12:00AM" }];
+	const dates = generateDates();
 
 	const bookingsMade = false;
 
@@ -46,15 +50,15 @@ const BookGame = () => {
 				<section className="available-booking">
 					<h2>Available Bookings</h2>
 					<div className="cards-container">
-						{days.map((day) => (
-							<BookingCard key={day} day={day} />
+						{dates.map((date) => (
+							<BookingCard key={date} date={date} />
 						))}
 					</div>
 				</section>
 				<section className="my-bookings">
 					<h2>My Bookings</h2>
-					{bookingsMade ? (
-						<div></div>
+					{bookings ? (
+						bookings.map((booking) => <BookedCard />)
 					) : (
 						<div className="no-bookings">
 							<div className="wrapper">No bookings made</div>

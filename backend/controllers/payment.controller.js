@@ -3,10 +3,11 @@ import { v4 as uuidv4 } from "uuid";
 
 import generateHmacSha256Hash from "../utils/generateSignature.js";
 import { createBooking } from "./booking.controller.js";
+import PendingPayment from "../models/PendingPayment.js";
 
 export async function initiatePayment(req, res) {
 	try {
-		let { amount } = req.body;
+		let { amount, day, time, date } = req.body;
 
 		amount = amount.toFixed(1);
 
@@ -29,6 +30,13 @@ export async function initiatePayment(req, res) {
 
 		paymentData = { ...paymentData, signature };
 
+		const pp = await PendingPayment.create({
+			transaction_uuid: paymentData.transaction_uuid,
+			day: day,
+			time: time,
+			date: date,
+		});
+
 		const payment = await axios.post(
 			"https://rc-epay.esewa.com.np/api/epay/main/v2/form",
 			null,
@@ -46,8 +54,19 @@ export async function initiatePayment(req, res) {
 
 export async function verifyPayment(req, res) {
 	try {
-		const decodedData = req.body;
+		const { decodedData } = req.body;
 		const { userId } = req.user;
+		console.log(decodedData);
+
+		const pending = await PendingPayment.findOne({
+			transaction_uuid: decodedData.transaction_uuid,
+		});
+
+		if (!pending) {
+			return res
+				.status(404)
+				.json({ message: "Payment session not found or expired" });
+		}
 
 		const data = decodedData.signed_field_names
 			.split(",")
@@ -76,9 +95,22 @@ export async function verifyPayment(req, res) {
 			return res.status(400).json({ message: "Payment status not complete" });
 		}
 
-		createBooking(userId, decodedData.amount, decodedData.transaction_uuid);
+		//First find out if booking is already reserved
 
-		return res.status(200).json("Payment successful");
+		const booking = await createBooking(
+			userId,
+			decodedData.amount,
+			decodedData.transaction_uuid,
+			pending.day,
+			pending.time,
+			pending.date,
+		);
+
+		await PendingPayment.deleteMany({
+			transaction_uuid: pending.transaction_uuid,
+		});
+
+		return res.status(200).json(booking);
 	} catch (e) {
 		console.log(e);
 		return res.status(500).json("Oops! something went wrong");

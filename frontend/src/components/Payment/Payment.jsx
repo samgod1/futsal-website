@@ -13,7 +13,6 @@ const Payment = () => {
 				className="wrapper"
 				onClick={(e) => {
 					e.stopPropagation();
-					handleInitiatePayment();
 				}}
 			>
 				<h1>Payment</h1>
@@ -29,7 +28,14 @@ const Payment = () => {
 					<span className="title">Price:</span>{" "}
 					<span className="value">{price}</span>
 				</div>
-				<button>Pay via Esewa</button>
+				<button
+					onClick={(e) => {
+						e.stopPropagation;
+						handleInitiatePayment();
+					}}
+				>
+					Pay via Esewa
+				</button>
 			</div>
 		</div>
 	);

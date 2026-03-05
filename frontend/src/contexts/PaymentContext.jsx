@@ -1,8 +1,10 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
+
 import {
 	initiatePayment,
 	verifyPaymentAndPaymentStatus,
 } from "../apis/payment";
+import { BookingContext } from "./BookingContext";
 
 export const PaymentContext = createContext();
 
@@ -10,9 +12,12 @@ const PaymentProvider = ({ children }) => {
 	const [isPaymentOpen, setIsPaymentOpen] = useState(false);
 	const [day, setDay] = useState("null");
 	const [time, setTime] = useState("null");
+	const [date, setDate] = useState("null");
 	const [price, setPrice] = useState("null");
 
-	function handlePaymentOpen(day, time) {
+	const { booking, setBooking } = useContext(BookingContext);
+
+	function handlePaymentOpen(day, time, date) {
 		if (day !== "Sat") {
 			setPrice(1000);
 		} else {
@@ -22,14 +27,24 @@ const PaymentProvider = ({ children }) => {
 		setIsPaymentOpen(true);
 		setDay(day);
 		setTime(time);
+		setDate(date);
 	}
 
 	function handleInitiatePayment() {
-		initiatePayment(price);
+		initiatePayment(price, day, time, date);
 	}
 
-	function handleVerifyPaymentAndPaymentStatus(data) {
-		verifyPaymentAndPaymentStatus(data, price, day, time);
+	async function handleVerifyPaymentAndPaymentStatus(data) {
+		const bookingData = await verifyPaymentAndPaymentStatus(data);
+
+		if (!bookingData) {
+			return;
+		}
+		if (booking) {
+			setBooking([...booking, bookingData]);
+		} else {
+			setBooking([bookingData]);
+		}
 	}
 
 	return (
@@ -41,6 +56,7 @@ const PaymentProvider = ({ children }) => {
 				price,
 				handlePaymentOpen,
 				handleInitiatePayment,
+				handleVerifyPaymentAndPaymentStatus,
 				setIsPaymentOpen,
 			}}
 		>
