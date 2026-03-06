@@ -7,6 +7,7 @@ export async function createBooking(
 	day,
 	time,
 	date,
+	code,
 ) {
 	const booking = await Booking.create({
 		userId: userId,
@@ -15,6 +16,7 @@ export async function createBooking(
 		time: time,
 		price: amount,
 		transaction_uuid: transaction_uuid,
+		code: code,
 	});
 
 	return booking;

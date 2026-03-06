@@ -69,7 +69,6 @@ export async function verifyPayment(req, res) {
 	try {
 		const { decodedData } = req.body;
 		const { userId } = req.user;
-		console.log(decodedData);
 
 		const pending = await PendingPayment.findOne({
 			transaction_uuid: decodedData.transaction_uuid,
@@ -108,6 +107,8 @@ export async function verifyPayment(req, res) {
 			return res.status(400).json({ message: "Payment status not complete" });
 		}
 
+		const code = generateCode();
+
 		const booking = await createBooking(
 			userId,
 			decodedData.amount,
@@ -115,6 +116,7 @@ export async function verifyPayment(req, res) {
 			pending.day,
 			pending.time,
 			pending.date,
+			code,
 		);
 
 		await PendingPayment.deleteMany({
