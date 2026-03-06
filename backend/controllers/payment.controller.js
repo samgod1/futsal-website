@@ -5,6 +5,7 @@ import generateHmacSha256Hash from "../utils/generateSignature.js";
 import { createBooking } from "./booking.controller.js";
 import PendingPayment from "../models/PendingPayment.js";
 import Booking from "../models/Booking.js";
+import generateCode from "../utils/generateCode.js";
 
 export async function initiatePayment(req, res) {
 	try {
@@ -70,6 +71,8 @@ export async function verifyPayment(req, res) {
 		const { decodedData } = req.body;
 		const { userId } = req.user;
 
+		console.log(decodedData);
+
 		const pending = await PendingPayment.findOne({
 			transaction_uuid: decodedData.transaction_uuid,
 		});
@@ -111,7 +114,7 @@ export async function verifyPayment(req, res) {
 
 		const booking = await createBooking(
 			userId,
-			decodedData.amount,
+			decodedData.total_amount,
 			decodedData.transaction_uuid,
 			pending.day,
 			pending.time,
