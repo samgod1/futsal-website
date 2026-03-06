@@ -31,6 +31,17 @@
 			border-radius: 1rem;
 			padding: 1rem;
 
+			h2 {
+				padding-bottom: 1rem;
+			}
+
+			.booked-cards-wrapper {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				overflow: auto;
+			}
+
 			.no-bookings {
 				flex-grow: 1;
 				display: flex;
