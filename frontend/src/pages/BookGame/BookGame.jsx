@@ -58,7 +58,7 @@ const BookGame = () => {
 				<section className="my-bookings">
 					<h2>My Bookings</h2>
 					{bookings ? (
-						bookings.map((booking) => <BookedCard />)
+						bookings.map((booking) => <BookedCard booking={booking} />)
 					) : (
 						<div className="no-bookings">
 							<div className="wrapper">No bookings made</div>

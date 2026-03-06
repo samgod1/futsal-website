@@ -4,10 +4,23 @@ import { v4 as uuidv4 } from "uuid";
 import generateHmacSha256Hash from "../utils/generateSignature.js";
 import { createBooking } from "./booking.controller.js";
 import PendingPayment from "../models/PendingPayment.js";
+import Booking from "../models/Booking.js";
 
 export async function initiatePayment(req, res) {
 	try {
 		let { amount, day, time, date } = req.body;
+
+		const isAlreadyBooked = await Booking.findOne({
+			day: day,
+			time: time,
+			date: date,
+		});
+
+		if (isAlreadyBooked) {
+			return res
+				.status(400)
+				.json({ message: "It seems that the slot is already booked" });
+		}
 
 		amount = amount.toFixed(1);
 
@@ -30,7 +43,7 @@ export async function initiatePayment(req, res) {
 
 		paymentData = { ...paymentData, signature };
 
-		const pp = await PendingPayment.create({
+		await PendingPayment.create({
 			transaction_uuid: paymentData.transaction_uuid,
 			day: day,
 			time: time,
@@ -94,8 +107,6 @@ export async function verifyPayment(req, res) {
 		if (response.data.status !== "COMPLETE") {
 			return res.status(400).json({ message: "Payment status not complete" });
 		}
-
-		//First find out if booking is already reserved
 
 		const booking = await createBooking(
 			userId,
