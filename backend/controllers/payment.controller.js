@@ -71,8 +71,6 @@ export async function verifyPayment(req, res) {
 		const { decodedData } = req.body;
 		const { userId } = req.user;
 
-		console.log(decodedData);
-
 		const pending = await PendingPayment.findOne({
 			transaction_uuid: decodedData.transaction_uuid,
 		});

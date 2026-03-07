@@ -7,6 +7,7 @@ import VisitUs from "./pages/VisitUs/VisitUs";
 import BookGame from "./pages/BookGame/BookGame";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
+import Success from "./pages/Success/Success";
 
 const App = () => {
 	const router = createBrowserRouter([
@@ -29,6 +30,10 @@ const App = () => {
 		{
 			path: "/signup",
 			element: <SignUp />,
+		},
+		{
+			path: "/success",
+			element: <Success />,
 		},
 	]);
 	return (

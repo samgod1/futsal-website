@@ -14,16 +14,12 @@ import BookedCard from "../../components/BookedCard/BookedCard";
 
 const BookGame = () => {
 	const { user, loading } = useContext(UserContext);
-	const { isPaymentOpen, handleVerifyPaymentAndPaymentStatus } =
-		useContext(PaymentContext);
-	const { bookings } = useContext(BookingContext);
+	const { isPaymentOpen } = useContext(PaymentContext);
+	const { bookings, handleGetUserBookings } = useContext(BookingContext);
 
 	const navigate = useNavigate();
-	const [searchParams] = useSearchParams("data");
 
 	const dates = generateDates();
-
-	const bookingsMade = false;
 
 	useEffect(() => {
 		if (!loading && !user) {
@@ -33,15 +29,7 @@ const BookGame = () => {
 	}, [loading]);
 
 	useEffect(() => {
-		const base64 = searchParams.get("data");
-		if (base64) {
-			const standardBase64 = base64.replace("/-/g", "+").replace("/_/g", "/");
-
-			const data = JSON.parse(atob(standardBase64));
-
-			//Now I have to send that data to the backend to verify signature and confirm status of payment
-			handleVerifyPaymentAndPaymentStatus(data);
-		}
+		handleGetUserBookings();
 	}, []);
 
 	return (
@@ -57,15 +45,15 @@ const BookGame = () => {
 				</section>
 				<section className="my-bookings">
 					<h2>My Bookings</h2>
-					{bookings ? (
+					{!bookings || bookings.length == 0 ? (
+						<div className="no-bookings">
+							<div className="wrapper">No bookings made</div>
+						</div>
+					) : (
 						<div className="booked-cards-wrapper">
 							{bookings.map((booking) => (
 								<BookedCard booking={booking} />
 							))}
-						</div>
-					) : (
-						<div className="no-bookings">
-							<div className="wrapper">No bookings made</div>
 						</div>
 					)}
 				</section>

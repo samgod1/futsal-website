@@ -26,7 +26,9 @@ export async function getUserBookings(req, res) {
 	try {
 		const userId = req.user.userId;
 
-		const bookings = await Booking.find({ userId: userId });
+		const bookings = await Booking.find({ userId: userId }).select(
+			"-transaction_uuid -_id -userId",
+		);
 
 		if (!bookings) {
 			return res.status(404).json({ message: "No bookings" });

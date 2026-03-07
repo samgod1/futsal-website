@@ -40,6 +40,9 @@ const PaymentProvider = ({ children }) => {
 		if (!bookingData) {
 			return;
 		}
+
+		navigate("/book-game");
+
 		if (booking) {
 			setBooking([...booking, bookingData]);
 		} else {

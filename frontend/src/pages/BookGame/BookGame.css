@@ -2,9 +2,11 @@
 	display: flex;
 	flex-direction: column;
 	height: 100dvh;
+
 	.book-game {
 		flex-grow: 1;
 		display: grid;
+		min-height: 0;
 		grid-template-columns: 2fr 1fr;
 		padding: 2rem 5rem;
 		font-family: "Inter";
@@ -30,6 +32,7 @@
 			border: 1px solid var(--c-gray);
 			border-radius: 1rem;
 			padding: 1rem;
+			min-height: 0;
 
 			h2 {
 				padding-bottom: 1rem;

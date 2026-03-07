@@ -11,12 +11,10 @@ const BookingProvider = ({ children }) => {
 		setBookings(userBookings);
 	}
 
-	useEffect(() => {
-		handleGetUserBookings();
-	}, []);
-
 	return (
-		<BookingContext.Provider value={{ bookings, setBookings }}>
+		<BookingContext.Provider
+			value={{ bookings, setBookings, handleGetUserBookings }}
+		>
 			{children}
 		</BookingContext.Provider>
 	);

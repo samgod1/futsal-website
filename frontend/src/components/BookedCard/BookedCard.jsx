@@ -5,7 +5,7 @@ import { MdDateRange, MdAccessTimeFilled } from "react-icons/md";
 import "./BookedCard.css";
 
 const BookedCard = ({ booking }) => {
-	const { date, day, time } = booking;
+	const { date, day, time, code } = booking;
 
 	return (
 		<div className="booked-card">
@@ -19,7 +19,7 @@ const BookedCard = ({ booking }) => {
 			</span>
 			<span>
 				<FaKey />
-				Token:
+				Code: {code}
 			</span>
 		</div>
 	);
