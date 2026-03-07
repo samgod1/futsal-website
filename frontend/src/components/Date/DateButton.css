@@ -1,0 +1,32 @@
+.date {
+	border: 1px solid var(--c-secondary);
+	border-radius: 0.75rem;
+	aspect-ratio: 1/1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--c-secondary);
+	cursor: pointer;
+
+	.text {
+		display: flex;
+		flex-direction: column;
+
+		span {
+			text-align: center;
+			font-weight: bold;
+		}
+
+		.day {
+			font-size: 1.5rem;
+		}
+
+		.dayName {
+		}
+	}
+}
+
+.date.selected-date {
+	background-color: var(--c-secondary);
+	color: var(--c-primary);
+}
