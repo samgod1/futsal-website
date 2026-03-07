@@ -8,6 +8,7 @@ import BookGame from "./pages/BookGame/BookGame";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Success from "./pages/Success/Success";
+import Failure from "./pages/Failure/Failure";
 
 const App = () => {
 	const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const App = () => {
 		{
 			path: "/success",
 			element: <Success />,
+		},
+		{
+			path: "/failure",
+			element: <Failure />,
 		},
 	]);
 	return (

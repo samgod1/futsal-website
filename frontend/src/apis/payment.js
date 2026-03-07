@@ -36,3 +36,18 @@ export async function verifyPaymentAndPaymentStatus(data) {
 		return null;
 	}
 }
+
+export async function handleFailure(transaction_uuid) {
+	try {
+		await axios.post(
+			"api/payment/failure",
+			{
+				transaction_uuid: transaction_uuid,
+			},
+			{ withCredentials: true },
+		);
+	} catch (e) {
+		console.log(e);
+		toast.error(e?.response?.data?.message || e.message);
+	}
+}

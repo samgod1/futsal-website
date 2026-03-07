@@ -7,13 +7,11 @@ import PaymentProvider from "./contexts/PaymentContext.jsx";
 import BookingProvider from "./contexts/BookingContext.jsx";
 
 createRoot(document.getElementById("root")).render(
-	<StrictMode>
-		<BookingProvider>
-			<PaymentProvider>
-				<UserProvider>
-					<App />
-				</UserProvider>
-			</PaymentProvider>
-		</BookingProvider>
-	</StrictMode>,
+	<BookingProvider>
+		<PaymentProvider>
+			<UserProvider>
+				<App />
+			</UserProvider>
+		</PaymentProvider>
+	</BookingProvider>,
 );

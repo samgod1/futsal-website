@@ -25,9 +25,12 @@ export async function initiatePayment(req, res) {
 
 		amount = amount.toFixed(1);
 
+		const transaction_uuid = uuidv4();
+
 		let paymentData = {
 			amount,
-			failure_url: process.env.FAILURE_URL,
+			failure_url:
+				process.env.FAILURE_URL + `?transaction_uuid=${transaction_uuid}`,
 			product_delivery_charge: "0",
 			product_service_charge: "0",
 			product_code: process.env.MERCHANT_ID,
@@ -35,7 +38,7 @@ export async function initiatePayment(req, res) {
 			success_url: process.env.SUCCESS_URL,
 			tax_amount: "0",
 			total_amount: amount,
-			transaction_uuid: uuidv4(),
+			transaction_uuid: transaction_uuid,
 		};
 
 		const data = `total_amount=${paymentData.total_amount},transaction_uuid=${paymentData.transaction_uuid},product_code=${paymentData.product_code}`;
@@ -125,6 +128,21 @@ export async function verifyPayment(req, res) {
 		});
 
 		return res.status(200).json(booking);
+	} catch (e) {
+		console.log(e);
+		return res.status(500).json("Oops! something went wrong");
+	}
+}
+
+export async function deletePendingPayment(req, res) {
+	try {
+		const transaction_uuid = req.body.transaction_uuid;
+
+		await PendingPayment.deleteMany({ transaction_uuid: transaction_uuid });
+
+		return res
+			.status(200)
+			.json({ message: "Successfully deleted pending payment" });
 	} catch (e) {
 		console.log(e);
 		return res.status(500).json("Oops! something went wrong");
