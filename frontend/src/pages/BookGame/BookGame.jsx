@@ -56,6 +56,10 @@ const BookGame = () => {
 	}, [selectedDate]);
 
 	useEffect(() => {
+		if (!alreadyBooked) {
+			return;
+		}
+
 		if (alreadyBooked.length == 0) {
 			return;
 		}

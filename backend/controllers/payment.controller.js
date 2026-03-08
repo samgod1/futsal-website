@@ -11,6 +11,20 @@ export async function initiatePayment(req, res) {
 	try {
 		let { amount, day, time, date } = req.body;
 
+		const someoneIsPaying = await PendingPayment.findOne({
+			date: date,
+			time: time,
+		});
+
+		if (someoneIsPaying) {
+			return res
+				.status(500)
+				.json({
+					message:
+						"Someone else is trying to book this. Please choose another slot",
+				});
+		}
+
 		const isAlreadyBooked = await Booking.findOne({
 			day: day,
 			time: time,
