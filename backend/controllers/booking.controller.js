@@ -40,3 +40,21 @@ export async function getUserBookings(req, res) {
 		return res.status(500).json({ message: "Oops! something went wrong" });
 	}
 }
+
+export async function getBookingsOfSevenDays(req, res) {
+	try {
+		const dates = req.body.dates;
+
+		const booked = await Booking.find({
+			date: { $in: dates },
+		}).select("-transaction_uuid -code -userId -price -day");
+
+		//Remove the unnecessary data from bookings probably date and time are only needed
+		//Check if the selected date timeSlots includes with the data sent and then make them unavailable
+
+		return res.status(200).json({ booked: booked });
+	} catch (e) {
+		console.log(e);
+		return res.status(500).json({ message: "Oops! something went wrong" });
+	}
+}

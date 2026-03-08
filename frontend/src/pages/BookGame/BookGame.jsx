@@ -12,15 +12,18 @@ import { BookingContext } from "../../contexts/BookingContext";
 import BookedCard from "../../components/BookedCard/BookedCard";
 import DateButton from "../../components/Date/DateButton";
 import TimeSlot from "../../components/TimeSlot/TimeSlot";
+import { getBookingsOfGeneratedDates } from "../../apis/booking";
 
 const BookGame = () => {
 	const dates = generateDates();
 
 	const [selectedDate, setSelectedDate] = useState(dates[0]);
-	const [day, setDay] = useState(new Date(dates[0]).getDate());
 	const [dayName, setDayName] = useState(
 		new Date(dates[0]).toLocaleDateString(undefined, { weekday: "short" }),
 	);
+	//only contains already booked data upto 7days including today
+	const [alreadyBooked, setAlreadyBooked] = useState([]);
+	const [bookedTimes, setBookedTimes] = useState([]);
 
 	const { user, loading } = useContext(UserContext);
 	const { isPaymentOpen } = useContext(PaymentContext);
@@ -28,7 +31,7 @@ const BookGame = () => {
 
 	const navigate = useNavigate();
 
-	const timeSlots = [
+	const [timeSlots, setTimeSlots] = useState([
 		"8:00AM",
 		"9:00AM",
 		"10:00AM",
@@ -42,7 +45,7 @@ const BookGame = () => {
 		"6:00PM",
 		"7:00PM",
 		"8:00PM",
-	];
+	]);
 
 	useEffect(() => {
 		setDayName(
@@ -53,6 +56,18 @@ const BookGame = () => {
 	}, [selectedDate]);
 
 	useEffect(() => {
+		if (alreadyBooked.length == 0) {
+			return;
+		}
+
+		const bookingsOfSelectedDate = alreadyBooked.filter(
+			(booked) => booked.date == selectedDate,
+		);
+
+		setBookedTimes(bookingsOfSelectedDate.map((booking) => booking.time));
+	}, [selectedDate, alreadyBooked]);
+
+	useEffect(() => {
 		if (!loading && !user) {
 			navigate("/signup");
 			toast("You need to signup/signin first");
@@ -60,6 +75,9 @@ const BookGame = () => {
 	}, [loading]);
 
 	useEffect(() => {
+		getBookingsOfGeneratedDates(dates).then((booked) =>
+			setAlreadyBooked(booked),
+		);
 		handleGetUserBookings();
 	}, []);
 
@@ -87,6 +105,7 @@ const BookGame = () => {
 								time={time}
 								selectedDate={selectedDate}
 								dayName={dayName}
+								available={!bookedTimes.includes(time)}
 								key={time}
 							/>
 						))}
@@ -103,7 +122,7 @@ const BookGame = () => {
 					) : (
 						<div className="booked-cards-wrapper">
 							{bookings.map((booking) => (
-								<BookedCard booking={booking} />
+								<BookedCard booking={booking} key={booking._id} />
 							))}
 						</div>
 					)}

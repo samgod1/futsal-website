@@ -8,3 +8,7 @@
 	text-align: center;
 	font-size: 1.5rem;
 }
+
+.slot.unavailable {
+	background-color: red;
+}

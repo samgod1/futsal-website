@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export async function getUserBookings() {
 	try {
@@ -9,5 +10,22 @@ export async function getUserBookings() {
 		return response.data;
 	} catch (e) {
 		console.log(e);
+	}
+}
+
+export async function getBookingsOfGeneratedDates(dates) {
+	try {
+		const response = await axios.post(
+			"api/booking/seven-days",
+			{ dates: dates },
+			{
+				withCredentials: true,
+			},
+		);
+
+		return response.data.booked;
+	} catch (e) {
+		console.log(e);
+		toast.error(e?.response?.data?.message || e.message);
 	}
 }

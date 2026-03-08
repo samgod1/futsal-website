@@ -1,9 +1,13 @@
 import express from "express";
 
-import { getUserBookings } from "../controllers/booking.controller.js";
+import {
+	getBookingsOfSevenDays,
+	getUserBookings,
+} from "../controllers/booking.controller.js";
 
 const router = express.Router();
 
 router.get("/user", getUserBookings);
+router.post("/seven-days", getBookingsOfSevenDays);
 
 export default router;
