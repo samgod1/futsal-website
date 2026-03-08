@@ -9,7 +9,7 @@ import { BookingContext } from "./BookingContext";
 export const PaymentContext = createContext();
 
 const PaymentProvider = ({ children }) => {
-	const [isPaymentOpen, setIsPaymentOpen] = useState(false);
+	const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 	const [day, setDay] = useState("null");
 	const [time, setTime] = useState("null");
 	const [date, setDate] = useState("null");
@@ -24,7 +24,7 @@ const PaymentProvider = ({ children }) => {
 			setPrice(1500);
 		}
 
-		setIsPaymentOpen(true);
+		setIsDetailsOpen(true);
 		setDay(day);
 		setTime(time);
 		setDate(date);
@@ -53,14 +53,14 @@ const PaymentProvider = ({ children }) => {
 	return (
 		<PaymentContext.Provider
 			value={{
-				isPaymentOpen,
+				isDetailsOpen,
 				day,
 				time,
 				price,
 				handlePaymentOpen,
 				handleInitiatePayment,
 				handleVerifyPaymentAndPaymentStatus,
-				setIsPaymentOpen,
+				setIsDetailsOpen,
 			}}
 		>
 			{children}

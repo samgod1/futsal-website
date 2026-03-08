@@ -1,21 +1,21 @@
 import React, { useContext, useEffect } from "react";
 import { PaymentContext } from "../../contexts/PaymentContext";
 
-import "./Payment.css";
+import "./Details.css";
 
-const Payment = () => {
-	const { day, time, price, handleInitiatePayment, setIsPaymentOpen } =
+const Details = () => {
+	const { day, time, price, handleInitiatePayment, setIsDetailsOpen } =
 		useContext(PaymentContext);
 
 	return (
-		<div className="background" onClick={() => setIsPaymentOpen(false)}>
+		<div className="background" onClick={() => setIsDetailsOpen(false)}>
 			<div
 				className="wrapper"
 				onClick={(e) => {
 					e.stopPropagation();
 				}}
 			>
-				<h1>Payment</h1>
+				<h1>Details</h1>
 				<div>
 					<span className="title">Day:</span>{" "}
 					<span className="value">{day}</span>
@@ -41,4 +41,4 @@ const Payment = () => {
 	);
 };
 
-export default Payment;
+export default Details;

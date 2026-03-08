@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import "./BookGame.css";
 import MainLayout from "../../layouts/MainLayout";
 import { UserContext } from "../../contexts/UserContext";
-import Payment from "../../components/Payment/Payment";
+import Details from "../../components/Details/Details";
 import { PaymentContext } from "../../contexts/PaymentContext";
 import generateDates from "../../utils/generateDates";
 import { BookingContext } from "../../contexts/BookingContext";
@@ -26,7 +26,7 @@ const BookGame = () => {
 	const [bookedTimes, setBookedTimes] = useState([]);
 
 	const { user, loading } = useContext(UserContext);
-	const { isPaymentOpen } = useContext(PaymentContext);
+	const { isDetailsOpen } = useContext(PaymentContext);
 	const { bookings, handleGetUserBookings } = useContext(BookingContext);
 
 	const navigate = useNavigate();
@@ -131,7 +131,7 @@ const BookGame = () => {
 						</div>
 					)}
 				</section>
-				{isPaymentOpen && <Payment />}
+				{isDetailsOpen && <Details />}
 			</main>
 		</MainLayout>
 	);

@@ -20,6 +20,7 @@ a {
 	--c-accent: #78ffd6;
 	--c-white: white;
 	--c-gray: gray;
+	--c-dark: rgb(53, 53, 53);
 
 	--color-background: var(--c-primary);
 	--color-navbar-text: var(--c-white);
