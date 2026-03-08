@@ -1,14 +1,23 @@
 .slot {
-	background-color: green;
+	border: 2px solid var(--c-secondary);
+	color: var(--c-secondary);
 	white-space: nowrap;
-	padding: 0.75rem;
-	color: var(--c-primary);
+	padding: 1rem 0.75rem;
 	border-radius: 0.5rem;
 	cursor: pointer;
 	text-align: center;
-	font-size: 1.5rem;
+	font-size: 1.25rem;
+	font-weight: 500;
+	transition: all 0.2s ease-in;
+}
+
+.slot:hover {
+	background-color: var(--c-secondary);
+	color: var(--c-primary);
 }
 
 .slot.unavailable {
-	background-color: red;
+	background-color: rgb(53, 53, 53);
+	color: var(--c-primary);
+	border: none;
 }

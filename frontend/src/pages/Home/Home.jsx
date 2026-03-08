@@ -65,7 +65,7 @@ const Home = () => {
 							Pricing
 						</h3>
 						<p>
-							Sun-Fri: Rs 1200
+							Sun-Fri: Rs 1000
 							<br />
 							Sat: Rs 1500
 						</p>
