@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaKey } from "react-icons/fa";
+import { BsDot } from "react-icons/bs";
 import { MdDateRange, MdAccessTimeFilled } from "react-icons/md";
 
 import "./BookedCard.css";
@@ -7,20 +8,28 @@ import "./BookedCard.css";
 const BookedCard = ({ booking }) => {
 	const { date, day, time, code } = booking;
 
+	const [isCodeVisible, setIsCodeVisible] = useState(false);
+
 	return (
 		<div className="booked-card">
-			<h3>
-				<MdAccessTimeFilled />
-				{time}
-			</h3>
-			<span>
-				<MdDateRange />
-				{date}, {day}
-			</span>
-			<span>
-				<FaKey />
-				Code: {code}
-			</span>
+			<div className="wrapper">
+				<p className="booked-date">
+					<MdDateRange />
+					{day}, {date}
+				</p>
+				<p className="booked-time">
+					<MdAccessTimeFilled className="booked-time-icon" />
+					{time.split(" ")[0]}
+				</p>
+			</div>
+			<div className="booking-code">
+				<p className="title">Code</p>
+				<div className="code" onClick={() => setIsCodeVisible(!isCodeVisible)}>
+					{isCodeVisible ? code : `•••••`}
+				</div>
+				<p className="info">Tap to {isCodeVisible ? "hide" : "reveal"}</p>
+				<button className="cancel-booking">Cancel</button>
+			</div>
 		</div>
 	);
 };

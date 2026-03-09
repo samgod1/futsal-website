@@ -119,6 +119,7 @@ const BookGame = () => {
 				{/* MY_BOOKINGS */}
 				<section className="my-bookings">
 					<h2>My Bookings</h2>
+					<div className="line"></div>
 					{!bookings || bookings.length == 0 ? (
 						<div className="no-bookings">
 							<div className="wrapper">No bookings made</div>

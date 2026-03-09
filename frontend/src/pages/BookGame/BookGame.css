@@ -48,7 +48,14 @@
 			min-height: 0;
 
 			h2 {
-				padding-bottom: 1rem;
+				color: var(--c-dark);
+				font-size: 1.75rem;
+				font-weight: 600;
+			}
+
+			.line {
+				border: 1px solid rgb(159, 158, 158);
+				margin-top: 0.5rem;
 			}
 
 			.booked-cards-wrapper {
@@ -56,6 +63,7 @@
 				flex-direction: column;
 				gap: 0.5rem;
 				overflow: auto;
+				color: var(--c-dark);
 			}
 
 			.no-bookings {
