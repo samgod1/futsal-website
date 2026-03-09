@@ -17,7 +17,11 @@
 }
 
 .slot.unavailable {
-	background-color: var(--c-dark);
-	color: var(--c-primary);
-	border: none;
+	color: var(--c-gray);
+	border-color: var(--c-gray);
+	cursor: not-allowed;
+}
+
+.slot.unavailable:hover {
+	background-color: transparent;
 }
