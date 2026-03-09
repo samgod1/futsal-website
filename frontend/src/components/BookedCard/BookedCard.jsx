@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import { FaKey } from "react-icons/fa";
-import { BsDot } from "react-icons/bs";
+import React, { useContext, useState } from "react";
 import { MdDateRange, MdAccessTimeFilled } from "react-icons/md";
 
 import "./BookedCard.css";
+import { BookingContext } from "../../contexts/BookingContext";
 
 const BookedCard = ({ booking }) => {
-	const { date, day, time, code } = booking;
+	const { _id, date, day, time, code } = booking;
 
 	const [isCodeVisible, setIsCodeVisible] = useState(false);
+
+	const { handleCancelBooking } = useContext(BookingContext);
 
 	return (
 		<div className="booked-card">
@@ -28,7 +29,14 @@ const BookedCard = ({ booking }) => {
 					{isCodeVisible ? code : `•••••`}
 				</div>
 				<p className="info">Tap to {isCodeVisible ? "hide" : "reveal"}</p>
-				<button className="cancel-booking">Cancel</button>
+				<button
+					className="cancel-booking"
+					onClick={() => {
+						handleCancelBooking(_id);
+					}}
+				>
+					Cancel
+				</button>
 			</div>
 		</div>
 	);

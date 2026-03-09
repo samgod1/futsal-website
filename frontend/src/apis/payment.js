@@ -27,7 +27,6 @@ export async function verifyPaymentAndPaymentStatus(data) {
 			{ withCredentials: true },
 		);
 
-		console.log(response.data);
 		//Here I have to use BookingContext to use response data in setBooking
 		return response.data;
 	} catch (e) {

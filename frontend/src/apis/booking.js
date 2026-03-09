@@ -29,3 +29,16 @@ export async function getBookingsOfGeneratedDates(dates) {
 		toast.error(e?.response?.data?.message || e.message);
 	}
 }
+
+export async function cancelBooking(_id) {
+	try {
+		console.log(_id);
+		const response = await axios.delete(`/api/booking/delete/${_id}`);
+		toast.success(response.data.message);
+		return true;
+	} catch (e) {
+		console.log(e);
+		toast.error(e?.response?.data?.message || e.message);
+		return false;
+	}
+}

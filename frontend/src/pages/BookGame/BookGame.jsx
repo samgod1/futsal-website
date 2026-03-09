@@ -21,13 +21,17 @@ const BookGame = () => {
 	const [dayName, setDayName] = useState(
 		new Date(dates[0]).toLocaleDateString(undefined, { weekday: "short" }),
 	);
-	//only contains already booked data upto 7days including today
-	const [alreadyBooked, setAlreadyBooked] = useState([]);
-	const [bookedTimes, setBookedTimes] = useState([]);
 
 	const { user, loading } = useContext(UserContext);
 	const { isDetailsOpen } = useContext(PaymentContext);
-	const { bookings, handleGetUserBookings } = useContext(BookingContext);
+	const {
+		bookings,
+		handleGetUserBookings,
+		alreadyBooked,
+		setAlreadyBooked,
+		bookedTimes,
+		setBookedTimes,
+	} = useContext(BookingContext);
 
 	const navigate = useNavigate();
 
@@ -57,10 +61,6 @@ const BookGame = () => {
 
 	useEffect(() => {
 		if (!alreadyBooked) {
-			return;
-		}
-
-		if (alreadyBooked.length == 0) {
 			return;
 		}
 

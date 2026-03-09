@@ -27,7 +27,7 @@ export async function getUserBookings(req, res) {
 		const userId = req.user.userId;
 
 		const bookings = await Booking.find({ userId: userId }).select(
-			"-transaction_uuid -_id -userId",
+			"-transaction_uuid -userId",
 		);
 
 		if (!bookings) {
@@ -53,6 +53,19 @@ export async function getBookingsOfSevenDays(req, res) {
 		//Check if the selected date timeSlots includes with the data sent and then make them unavailable
 
 		return res.status(200).json({ booked: booked });
+	} catch (e) {
+		console.log(e);
+		return res.status(500).json({ message: "Oops! something went wrong" });
+	}
+}
+
+export async function cancelBooking(req, res) {
+	try {
+		const id = req.params.id;
+
+		await Booking.deleteOne({ _id: id });
+
+		return res.status(200).json({ message: "Successfully cancelled booking" });
 	} catch (e) {
 		console.log(e);
 		return res.status(500).json({ message: "Oops! something went wrong" });
