@@ -9,7 +9,7 @@ const BookedCard = ({ booking }) => {
 
 	const [isCodeVisible, setIsCodeVisible] = useState(false);
 
-	const { handleCancelBooking } = useContext(BookingContext);
+	const { setIsCancelBookingOpen, setBookingId } = useContext(BookingContext);
 
 	return (
 		<div className="booked-card">
@@ -32,7 +32,8 @@ const BookedCard = ({ booking }) => {
 				<button
 					className="cancel-booking"
 					onClick={() => {
-						handleCancelBooking(_id);
+						setIsCancelBookingOpen(true);
+						setBookingId(_id);
 					}}
 				>
 					Cancel

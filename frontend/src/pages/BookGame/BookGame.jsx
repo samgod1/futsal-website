@@ -13,6 +13,7 @@ import BookedCard from "../../components/BookedCard/BookedCard";
 import DateButton from "../../components/Date/DateButton";
 import TimeSlot from "../../components/TimeSlot/TimeSlot";
 import { getBookingsOfGeneratedDates } from "../../apis/booking";
+import CancelBooking from "../../components/CancelBooking/CancelBooking";
 
 const BookGame = () => {
 	const dates = generateDates();
@@ -31,6 +32,7 @@ const BookGame = () => {
 		setAlreadyBooked,
 		bookedTimes,
 		setBookedTimes,
+		isCancelBookingOpen,
 	} = useContext(BookingContext);
 
 	const navigate = useNavigate();
@@ -133,6 +135,7 @@ const BookGame = () => {
 					)}
 				</section>
 				{isDetailsOpen && <Details />}
+				{isCancelBookingOpen && <CancelBooking />}
 			</main>
 		</MainLayout>
 	);
