@@ -18,11 +18,13 @@ nav {
 	color: var(--color-navbar-text);
 	font-family: "Alegreya Sans", sans-serif;
 	font-weight: 800;
-	font-size: 1.25rem;
+	font-size: 1rem;
+	font-size: clamp(1rem, -0.3333333333333335rem + 2.666666666666667vw, 1.5rem);
 
 	.links-container {
 		display: flex;
-		gap: 3rem;
+		gap: 1rem;
+		gap: clamp(1rem, -4.333333333333334rem + 10.666666666666668vw, 3rem);
 		a {
 			color: inherit;
 		}
@@ -61,5 +63,104 @@ nav {
 	}
 	.sign-in.selected-link {
 		color: var(--color-navbar-text-hover);
+	}
+
+	.hamburger {
+		display: none;
+	}
+}
+
+.hamburger-menu-background {
+	display: none;
+	position: fixed;
+	height: 100dvh;
+	z-index: 50;
+	inset: 0;
+	backdrop-filter: blur(5px);
+
+	.menu {
+		position: fixed;
+		z-index: 51;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		width: 100%;
+		max-width: 300px;
+		background-color: var(--c-dark);
+		padding: 1rem;
+		transform: translateX(100%);
+		transition: all 0.2s ease-in;
+		font-family: "Alegreya Sans";
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+
+		.close-button {
+			color: var(--c-primary);
+			svg {
+				display: block;
+			}
+
+			display: block;
+			margin-left: auto;
+		}
+
+		.links-container {
+			flex-grow: 1;
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+
+			button {
+				color: var(--c-primary);
+				font-size: 2rem;
+				font-weight: bold;
+				cursor: pointer;
+			}
+			button.selected-link {
+				color: var(--c-accent);
+			}
+		}
+
+		.logout {
+			color: var(--c-primary);
+			background-color: red;
+			border-radius: 0.5rem;
+			font-size: 1.5rem;
+			font-weight: bold;
+			padding: 0.5rem;
+			text-align: center;
+		}
+	}
+	.hamburger-menu.visible {
+		display: block;
+	}
+}
+.hamburger-menu-background.visible {
+	display: block;
+}
+
+@media (width <= 800px) {
+	nav {
+		padding-left: 1rem;
+		padding-left: clamp(1rem, -1.75rem + 11vw, 3.75rem);
+		padding-right: 1rem;
+		padding-right: clamp(1rem, -1.75rem + 11vw, 3.75rem);
+
+		.links-container {
+			display: none;
+		}
+
+		.sign-in {
+			display: none;
+		}
+
+		.username-wrapper {
+			display: none;
+		}
+
+		.hamburger {
+			display: block;
+		}
 	}
 }

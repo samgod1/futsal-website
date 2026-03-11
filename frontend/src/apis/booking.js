@@ -32,7 +32,6 @@ export async function getBookingsOfGeneratedDates(dates) {
 
 export async function cancelBooking(_id) {
 	try {
-		console.log(_id);
 		const response = await axios.delete(`/api/booking/delete/${_id}`);
 		toast.success(response.data.message);
 		return true;
