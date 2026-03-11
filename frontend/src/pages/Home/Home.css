@@ -99,7 +99,7 @@
 		gap: 2rem;
 		align-items: center;
 		height: 500px;
-		padding: 3rem 3rem;
+		padding: 3rem clamp(1rem, -1.75rem + 11vw, 3.75rem);
 
 		.info {
 			display: grid;
@@ -169,6 +169,12 @@
 
 @media (width <= 800px) {
 	.home-page {
+		.quick-stats {
+			h3 {
+				font-size: 2rem;
+			}
+		}
+
 		.quick-info {
 			flex-direction: column;
 			height: auto;
