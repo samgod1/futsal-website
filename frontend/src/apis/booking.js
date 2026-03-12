@@ -26,7 +26,9 @@ export async function getBookingsOfGeneratedDates(dates) {
 		return response.data.booked;
 	} catch (e) {
 		console.log(e);
-		toast.error(e?.response?.data?.message || e.message);
+		if (!e?.response?.status) {
+			toast.error(e?.response?.data?.message || e.message);
+		}
 	}
 }
 

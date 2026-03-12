@@ -74,6 +74,7 @@ const BookGame = () => {
 	}, [selectedDate, alreadyBooked]);
 
 	useEffect(() => {
+		console.log(loading, user);
 		if (!loading && !user) {
 			navigate("/signup");
 			toast("You need to signup/signin first");

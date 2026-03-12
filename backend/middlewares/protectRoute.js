@@ -4,7 +4,7 @@ async function protectRoute(req, res, next) {
 	const token = req.cookies.token;
 
 	if (!token) {
-		return res.status(401);
+		return res.status(401).json("Token not provided");
 	}
 
 	try {
