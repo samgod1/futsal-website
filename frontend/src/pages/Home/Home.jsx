@@ -2,20 +2,11 @@ import { FaLocationCrosshairs } from "react-icons/fa6";
 import { MdAccessTimeFilled } from "react-icons/md";
 import { FaMoneyBill, FaPhoneAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "../../contexts/UserContext";
 
 import "./Home.css";
-import Loading from "../../components/Loading/Loading";
 import MainLayout from "../../layouts/MainLayout";
 
 const Home = () => {
-	const { user, loading } = useContext(UserContext);
-
-	if (loading) {
-		return <Loading />;
-	}
-
 	return (
 		<MainLayout page="home-page">
 			<section className="hero">

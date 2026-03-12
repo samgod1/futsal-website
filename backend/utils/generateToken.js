@@ -7,8 +7,8 @@ function generateToken(res, userId) {
 
 	res.cookie("token", token, {
 		httpOnly: true,
-		secure: process.env.PRODUCTION,
-		sameSite: process.env.PRODUCTION ? "strict" : "none",
+		secure: process.env.PRODUCTION === "true" ? true : false,
+		sameSite: process.env.PRODUCTION ? "strict" : "lax",
 		maxAge: 30 * 24 * 60 * 60 * 1000,
 	});
 

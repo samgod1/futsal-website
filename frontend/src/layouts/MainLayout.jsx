@@ -7,9 +7,9 @@ import Loading from "../components/Loading/Loading";
 const MainLayout = ({ children, page }) => {
 	const { user, loading, handleLogout } = useContext(UserContext);
 
-	if (loading) {
-		return <Loading />;
-	}
+	// if (loading) {
+	// 	return <Loading />;
+	// }
 
 	return (
 		<div className={page}>

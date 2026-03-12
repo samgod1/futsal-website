@@ -2,7 +2,7 @@
 	background-color: var(--color-background);
 
 	.visit-us {
-		padding: 2rem 5rem;
+		padding: 2rem clamp(1rem, -1.75rem + 11vw, 3.75rem);
 		font-family: "Inter";
 		display: flex;
 		flex-direction: column;
@@ -60,6 +60,27 @@
 				display: flex;
 				justify-content: center;
 				gap: 0.5rem;
+			}
+		}
+	}
+}
+
+@media (width <= 800px) {
+	.visit-us-page {
+		.visit-us {
+			.available-facilities {
+				h2 {
+					font-size: 2rem;
+				}
+				.facilities {
+					grid-template-columns: 1fr;
+
+					.facility {
+						h3 {
+							font-size: 1.5rem;
+						}
+					}
+				}
 			}
 		}
 	}
