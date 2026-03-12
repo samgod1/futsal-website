@@ -82,7 +82,11 @@ const Navbar = ({ user, handleLogout }) => {
 
 	useEffect(() => {
 		if (isHamburgerMenuOpen) {
-			hamburgerMenuRef.current.style.transform = "translateX(0%)";
+			requestAnimationFrame(() => {
+				requestAnimationFrame(() => {
+					hamburgerMenuRef.current.style.transform = "translateX(0%)";
+				});
+			});
 		}
 	}, [isHamburgerMenuOpen]);
 
