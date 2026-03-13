@@ -10,12 +10,13 @@ import bookingRoutes from "./routes/booking.route.js";
 import connectToDB from "./config/database.js";
 import protectRoute from "./middlewares/protectRoute.js";
 
+config();
+
 const app = express();
 const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(cookieParser());
-config();
 
 const PORT = process.env.PORT;
 
@@ -28,7 +29,7 @@ app.use("/api/booking", protectRoute, bookingRoutes);
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 if (process.env.PRODUCTION === "true") {
-	app.use("*/{any}", (req, res) => {
+	app.use("/{*any}", (req, res) => {
 		res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 	});
 }
