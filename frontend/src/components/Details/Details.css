@@ -13,6 +13,17 @@
 		padding: 1.5rem 1rem;
 		width: 22rem;
 		color: var(--c-dark);
+		position: relative;
+		overflow: hidden;
+
+		.loading-container {
+			position: absolute;
+			inset: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: var(--c-primary);
+		}
 
 		h1 {
 			text-align: center;

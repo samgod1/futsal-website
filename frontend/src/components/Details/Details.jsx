@@ -1,9 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { PaymentContext } from "../../contexts/PaymentContext";
+import { ClipLoader } from "react-spinners";
 
 import "./Details.css";
 
 const Details = () => {
+	const [loading, setLoading] = useState(false);
 	const { day, time, price, handleInitiatePayment, setIsDetailsOpen } =
 		useContext(PaymentContext);
 
@@ -15,6 +17,11 @@ const Details = () => {
 					e.stopPropagation();
 				}}
 			>
+				{loading && (
+					<div className="loading-container">
+						<ClipLoader size={40} />
+					</div>
+				)}
 				<h1>Details</h1>
 				<div>
 					<span className="title">Day:</span>{" "}
@@ -32,6 +39,7 @@ const Details = () => {
 					onClick={(e) => {
 						e.stopPropagation;
 						handleInitiatePayment();
+						setLoading(true);
 					}}
 				>
 					Pay via Esewa
