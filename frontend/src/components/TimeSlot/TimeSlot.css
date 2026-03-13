@@ -34,5 +34,6 @@
 @media (width <= 400px) {
 	.slot {
 		font-size: 0.75rem;
+		padding: 1rem 0.5rem;
 	}
 }
