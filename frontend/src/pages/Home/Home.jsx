@@ -11,7 +11,16 @@ const Home = () => {
 		<MainLayout page="home-page">
 			<section className="hero">
 				<div className="img">
-					<img src="/images/futsal.png" alt="futsal" />
+					<img
+						src="/images/futsal.webp"
+						srcset="/images/futsal-320w.webp 320w,
+						/images/futsal-640w.webp 640w,
+						/images/futsal-960w.webp 960w,
+						/images/futsal.webp 1280w"
+						sizes="(max-width: 600px) 100vw, 50vw"
+						alt="Describe your image"
+						loading="lazy"
+					/>
 				</div>
 				<div className="text-container">
 					<h1>THE PITCH IS WAITING</h1>
@@ -70,7 +79,7 @@ const Home = () => {
 					</div>
 				</div>
 				<div className="wrapper">
-					<img src="/images/playing-with-ball.jpg" alt="playing-with-ball" />
+					<img src="/images/playing-with-ball.webp" alt="playing-with-ball" />
 				</div>
 			</section>
 		</MainLayout>

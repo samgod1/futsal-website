@@ -110,6 +110,7 @@ nav {
 			display: flex;
 			flex-direction: column;
 			gap: 0.5rem;
+			align-items: flex-start;
 
 			button {
 				color: var(--c-primary);
