@@ -11,10 +11,11 @@
 		border: 2px solid var(--c-secondary);
 		border-radius: 0.75rem;
 		padding: 1.5rem 1rem;
-		width: 22rem;
+		width: 20rem;
 		color: var(--c-dark);
 		position: relative;
 		overflow: hidden;
+		margin: 0 1rem;
 
 		.loading-container {
 			position: absolute;
@@ -52,6 +53,32 @@
 			margin-left: auto;
 			margin-right: auto;
 			font-size: 1.5rem;
+		}
+	}
+}
+
+@media (width <= 800px) {
+	.background {
+		.wrapper {
+			width: 18rem;
+			h1 {
+				font-size: 1.75rem;
+			}
+
+			div {
+				padding-bottom: 0;
+				.title {
+					font-size: 1.5rem;
+					width: 4rem;
+				}
+				.value {
+					font-size: 1.25rem;
+				}
+			}
+
+			button {
+				font-size: 1rem;
+			}
 		}
 	}
 }

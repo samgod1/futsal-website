@@ -93,6 +93,13 @@
 		.book-game {
 			display: flex;
 			flex-direction: column;
+
+			.my-bookings {
+				.booked-cards-wrapper {
+					display: grid;
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
 		}
 	}
 }
@@ -107,6 +114,15 @@
 				.slots-container {
 					grid-template-columns: repeat(2, 1fr);
 					gap: 0.5rem;
+				}
+			}
+
+			.my-bookings {
+				h2 {
+					font-size: 1.5rem;
+				}
+				.booked-cards-wrapper {
+					display: flex;
 				}
 			}
 		}
