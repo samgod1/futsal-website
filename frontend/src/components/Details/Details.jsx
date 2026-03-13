@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { PaymentContext } from "../../contexts/PaymentContext";
-import { ClipLoader } from "react-spinners";
+import { PulseLoader } from "react-spinners";
 
 import "./Details.css";
 
@@ -19,7 +19,7 @@ const Details = () => {
 			>
 				{loading && (
 					<div className="loading-container">
-						<ClipLoader size={40} />
+						<PulseLoader color="var(--c-dark)" size={20} />
 					</div>
 				)}
 				<h1>Details</h1>
