@@ -21,6 +21,7 @@ a {
 	--c-white: white;
 	--c-gray: gray;
 	--c-dark: rgb(53, 53, 53);
+	--c-red: #d64045;
 
 	--color-background: var(--c-primary);
 	--color-navbar-text: var(--c-white);

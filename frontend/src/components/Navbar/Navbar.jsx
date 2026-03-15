@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { useEffect, useRef, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
+import { FaUserCircle } from "react-icons/fa";
 
 import "./Navbar.css";
 
@@ -117,6 +118,7 @@ const Navbar = ({ user, handleLogout }) => {
 						ref={dropdownRef}
 						onClick={handleUsernameClick}
 					>
+						<FaUserCircle size={25} />
 						<div className="username">{user.username.toUpperCase()}</div>
 						{isDropdownOpen && (
 							<div className="dropdown">

@@ -38,22 +38,30 @@ nav {
 
 	.username-wrapper {
 		position: relative;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		cursor: pointer;
 
 		.dropdown {
 			position: absolute;
-			top: 2rem;
+			top: 2.5rem;
+			left: 50%;
 			border-radius: 0.25rem;
 			overflow: hidden;
+			transform: translateX(-50%);
+
 			.logout {
-				background-color: red;
+				background-color: var(--c-red);
 				cursor: pointer;
 				padding: 0.25rem 0.5rem;
+				transition: all 0.2s ease;
+			}
+
+			.logout:hover {
+				background-color: red;
 			}
 		}
-	}
-	.username:hover {
-		color: var(--c-accent);
-		cursor: pointer;
 	}
 	.sign-in {
 		color: inherit;
@@ -125,12 +133,16 @@ nav {
 
 		.logout {
 			color: var(--c-primary);
-			background-color: red;
+			background-color: var(--c-red);
 			border-radius: 0.5rem;
 			font-size: 1.5rem;
 			font-weight: bold;
 			padding: 0.5rem;
 			text-align: center;
+			transition: all 0.2s ease;
+		}
+		.logout:hover {
+			background-color: red;
 		}
 	}
 	.hamburger-menu.visible {
