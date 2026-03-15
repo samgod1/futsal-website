@@ -23,17 +23,32 @@ const Details = () => {
 					</div>
 				)}
 				<h1>Details</h1>
-				<div>
+				<div className="g">
 					<span className="title">Day:</span>{" "}
 					<span className="value">{day}</span>
 				</div>
-				<div>
+				<div className="g">
 					<span className="title">Time:</span>{" "}
 					<span className="value">{time}</span>
 				</div>
-				<div>
+				<div className="g">
 					<span className="title">Price:</span>{" "}
 					<span className="value">{price}</span>
+				</div>
+				<div className="test-credentials">
+					<h2>Test Credentials</h2>
+					<div className="group">
+						<div className="t">Id:</div>
+						<div className="v">9806800003</div>
+					</div>
+					<div className="group">
+						<div className="t">Mpin:</div>
+						<div className="v">1122</div>
+					</div>
+					<div className="group">
+						<div className="t">OTP:</div>
+						<div className="v">123456</div>
+					</div>
 				</div>
 				<button
 					onClick={(e) => {

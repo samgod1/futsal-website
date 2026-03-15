@@ -31,7 +31,7 @@
 			padding-bottom: 1rem;
 		}
 
-		div {
+		.g {
 			.title {
 				font-weight: 600;
 				width: 4rem;
@@ -39,6 +39,30 @@
 			}
 			font-size: 1.5rem;
 			padding-bottom: 0.25rem;
+		}
+
+		.test-credentials {
+			border: 1px solid var(--c-dark);
+			border-radius: 0.5rem;
+			padding: 0.5rem;
+			background-color: rgb(213, 212, 212);
+
+			h2 {
+				font-size: 1.5rem;
+			}
+			.group {
+				display: flex;
+				align-items: center;
+			}
+			.t {
+				font-size: 1.25rem;
+				padding-bottom: 0;
+				width: 3.5rem;
+				font-weight: 500;
+			}
+			.v {
+				font-size: 1rem;
+			}
 		}
 
 		button {

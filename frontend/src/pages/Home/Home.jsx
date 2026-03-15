@@ -11,16 +11,7 @@ const Home = () => {
 		<MainLayout page="home-page">
 			<section className="hero">
 				<div className="img">
-					<img
-						src="/images/futsal.webp"
-						srcset="/images/futsal-320w.webp 320w,
-						/images/futsal-640w.webp 640w,
-						/images/futsal-960w.webp 960w,
-						/images/futsal.webp 1280w"
-						sizes="(max-width: 600px) 100vw, 50vw"
-						alt="Describe your image"
-						loading="lazy"
-					/>
+					<img src="/images/futsal-1280w.webp" alt="futsal" />
 				</div>
 				<div className="text-container">
 					<h1>THE PITCH IS WAITING</h1>
