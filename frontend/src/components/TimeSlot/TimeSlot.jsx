@@ -15,7 +15,6 @@ const TimeSlot = ({ time, selectedDate, dayName, available }) => {
 					handlePaymentOpen(dayName, time, selectedDate);
 					toast("PLEASE COPY THE CREDENTIALS BEFORE CLICKING THE BUTTON");
 				} else {
-					console.log("hello");
 					toast("The slot seems to be already booked");
 				}
 			}}

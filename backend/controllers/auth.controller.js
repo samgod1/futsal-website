@@ -114,7 +114,7 @@ export async function logout(req, res) {
 		res.cookie("token", "", {
 			httpOnly: true,
 			secure: process.env.PRODUCTION === "true" ? true : false,
-			sameSite: "lax",
+			sameSite: "none",
 			maxAge: 0,
 		});
 
