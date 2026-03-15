@@ -2,6 +2,10 @@
 
 Kumari futsal website is a futsal booking website created to make booking easier and convinent. The website has home, visit us, book game, signin and signup pages. To locate the fustal easily there's a map in visit us page. The website uses esewa for payment. You can use test credentials given in the website to pay. All your bookings and login credentials are stored in the backend. Hope you like this project ♥.
 
+## Important Note
+
+The credentials for payment are given in details(The box that appears when you click a time slot)
+
 ## ✨Features
 
 - Authentication
