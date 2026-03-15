@@ -26,15 +26,19 @@ app.use("/api/payment", protectRoute, paymentRoutes);
 app.use("/api/booking", protectRoute, bookingRoutes);
 
 // for production merge frontend and backend
-app.use(express.static(path.join(__dirname, "../frontend/dist")));
+// app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-if (process.env.PRODUCTION === "true") {
-	app.use("/{*any}", (req, res) => {
-		res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
-	});
-}
+// if (process.env.PRODUCTION === "true") {
+// 	app.use("/{*any}", (req, res) => {
+// 		res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+// 	});
+// }
 
-app.listen(PORT, () => {
-	console.log("App is listening to port: " + PORT);
-	connectToDB();
-});
+// app.listen(PORT, () => {
+// 	console.log("App is listening to port: " + PORT);
+// 	connectToDB();
+// });
+
+connectToDB();
+
+export default app;
