@@ -2,6 +2,7 @@ import express from "express";
 import { config } from "dotenv";
 import cookieParser from "cookie-parser";
 import path from "path";
+import cors from "cors";
 
 import authRoutes from "./routes/auth.route.js";
 import userRoutes from "./routes/user.route.js";
@@ -9,6 +10,8 @@ import paymentRoutes from "./routes/payment.route.js";
 import bookingRoutes from "./routes/booking.route.js";
 import connectToDB from "./config/database.js";
 import protectRoute from "./middlewares/protectRoute.js";
+
+app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 
 config();
 
@@ -19,6 +22,10 @@ app.use(express.json());
 app.use(cookieParser());
 
 const PORT = process.env.PORT;
+
+app.get("/", (req, res) => {
+	res.send("Hello world");
+});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user", protectRoute, userRoutes);
