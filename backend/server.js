@@ -11,13 +11,12 @@ import bookingRoutes from "./routes/booking.route.js";
 import connectToDB from "./config/database.js";
 import protectRoute from "./middlewares/protectRoute.js";
 
-app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
-
 config();
 
 const app = express();
 const __dirname = path.resolve();
 
+app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
