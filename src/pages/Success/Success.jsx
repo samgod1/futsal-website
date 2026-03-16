@@ -10,6 +10,7 @@ const Success = () => {
 	const [searchParams] = useSearchParams();
 	const { handleVerifyPaymentAndPaymentStatus } = useContext(PaymentContext);
 	const [bookingData, setBookingData] = useState(null);
+	const [isValidating, setIsValidating] = useState(true);
 
 	useEffect(() => {
 		const base64 = searchParams.get("data");
@@ -20,10 +21,19 @@ const Success = () => {
 
 			//Now I have to send that data to the backend to verify signature and confirm status of payment
 			const verifyPayment = async () => {
-				const verifiedBooking = await handleVerifyPaymentAndPaymentStatus(data);
-				setBookingData(verifiedBooking);
+				try {
+					const verifiedBooking =
+						await handleVerifyPaymentAndPaymentStatus(data);
+					setBookingData(verifiedBooking);
+				} catch (error) {
+					console.error("Verification failed", error);
+				} finally {
+					setIsValidating(false);
+				}
 			};
 			verifyPayment();
+		} else {
+			setIsValidating(false);
 		}
 	}, []);
 
@@ -34,11 +44,17 @@ const Success = () => {
 					<DotLottieReact src="/images/Success.lottie" autoplay fit="fill" />
 				</div>
 				<div className="text">
-					<span>Payment successful</span>
-					<Link to={"/book-game"} state={{ bookingData }}>
-						<IoMdArrowRoundBack />
-						Go Back
-					</Link>
+					{isValidating ? (
+						<span>Verifying Payment...</span>
+					) : (
+						<>
+							<span>Payment successful</span>
+							<Link to={"/book-game"} state={{ bookingData }}>
+								<IoMdArrowRoundBack />
+								Go Back
+							</Link>
+						</>
+					)}
 				</div>
 			</div>
 		</div>

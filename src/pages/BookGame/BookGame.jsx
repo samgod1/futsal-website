@@ -83,16 +83,20 @@ const BookGame = () => {
 
 	useEffect(() => {
 		getBookingsOfGeneratedDates(dates).then((booked) => {
+			const currentBooked = booked || [];
 			const newBooking = location.state?.bookingData;
+
 			if (newBooking) {
-				const exists = booked.some((b) => b._id === newBooking._id);
+				const exists = currentBooked.some(
+					(b) => String(b._id) === String(newBooking._id),
+				);
 				if (!exists) {
-					setAlreadyBooked([...booked, newBooking]);
+					setAlreadyBooked([...currentBooked, newBooking]);
 				} else {
-					setAlreadyBooked(booked);
+					setAlreadyBooked(currentBooked);
 				}
 			} else {
-				setAlreadyBooked(booked);
+				setAlreadyBooked(currentBooked);
 			}
 		});
 		handleGetUserBookings();

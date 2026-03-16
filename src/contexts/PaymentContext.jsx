@@ -15,7 +15,7 @@ const PaymentProvider = ({ children }) => {
 	const [date, setDate] = useState("null");
 	const [price, setPrice] = useState("null");
 
-	const { booking, setBooking } = useContext(BookingContext);
+	const { bookings, setBookings } = useContext(BookingContext);
 
 	function handlePaymentOpen(day, time, date) {
 		if (day !== "Sat") {
@@ -41,10 +41,10 @@ const PaymentProvider = ({ children }) => {
 			return null;
 		}
 
-		if (booking) {
-			setBooking([...booking, bookingData]);
+		if (bookings) {
+			setBookings([...bookings, bookingData]);
 		} else {
-			setBooking([bookingData]);
+			setBookings([bookingData]);
 		}
 		return bookingData;
 	}
