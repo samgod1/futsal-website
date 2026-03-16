@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 
 export async function getUserBookings() {
 	try {
-		const response = await axios.get("/booking/user", {
+		const response = await axios.get("/api/booking/user", {
 			withCredentials: true,
 		});
 
@@ -16,7 +16,7 @@ export async function getUserBookings() {
 export async function getBookingsOfGeneratedDates(dates) {
 	try {
 		const response = await axios.post(
-			"/booking/seven-days",
+			"/api/booking/seven-days",
 			{ dates: dates },
 			{
 				withCredentials: true,
@@ -34,7 +34,7 @@ export async function getBookingsOfGeneratedDates(dates) {
 
 export async function cancelBooking(_id) {
 	try {
-		const response = await axios.delete(`/booking/delete/${_id}`);
+		const response = await axios.delete(`/api/booking/delete/${_id}`);
 		toast.success(response.data.message);
 		return true;
 	} catch (e) {
