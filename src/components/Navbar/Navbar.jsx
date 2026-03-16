@@ -119,7 +119,7 @@ const Navbar = ({ user, handleLogout }) => {
 						onClick={handleUsernameClick}
 					>
 						<FaUserCircle size={25} />
-						<div className="username">{user.username.toUpperCase()}</div>
+						<div className="username">{user?.username?.toUpperCase()}</div>
 						{isDropdownOpen && (
 							<div className="dropdown">
 								<button
