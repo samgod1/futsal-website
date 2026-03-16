@@ -40,10 +40,12 @@ app.use("/api/booking", protectRoute, bookingRoutes);
 // 	});
 // }
 
-// app.listen(PORT, () => {
-// 	console.log("App is listening to port: " + PORT);
-// 	connectToDB();
-// });
+// if (process.env.PRODUCTION == "false") {
+// 	app.listen(PORT, () => {
+// 		console.log("App is listening to port: " + PORT);
+// 		connectToDB();
+// 	});
+// }
 
 connectToDB();
 
