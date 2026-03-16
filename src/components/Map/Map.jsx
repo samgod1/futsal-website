@@ -1,9 +1,22 @@
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import L from "leaflet";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
 
 import "leaflet/dist/leaflet.css";
 import "./Map.css";
 
 const location = [27.713984892107838, 85.30817070792934];
+
+const DefaultIcon = L.icon({
+	iconUrl: markerIcon,
+	shadowUrl: markerShadow,
+	iconSize: [25, 41],
+	iconAnchor: [12, 41],
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
+
 const Map = () => {
 	return (
 		<div className="map-container">
