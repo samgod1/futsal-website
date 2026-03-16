@@ -4,12 +4,12 @@ import cookieParser from "cookie-parser";
 import path from "path";
 import cors from "cors";
 
-import authRoutes from "./routes/auth.route.js";
-import userRoutes from "./routes/user.route.js";
-import paymentRoutes from "./routes/payment.route.js";
-import bookingRoutes from "./routes/booking.route.js";
-import connectToDB from "./config/database.js";
-import protectRoute from "./middlewares/protectRoute.js";
+import authRoutes from "../backend/routes/auth.route.js";
+import userRoutes from "../backend/routes/user.route.js";
+import paymentRoutes from "../backend/routes/payment.route.js";
+import bookingRoutes from "../backend/routes/booking.route.js";
+import connectToDB from "../backend/config/database.js";
+import protectRoute from "../backend/middlewares/protectRoute.js";
 
 config();
 
