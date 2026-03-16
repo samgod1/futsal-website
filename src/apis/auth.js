@@ -3,7 +3,7 @@ import { toast } from "react-hot-toast";
 
 export async function signup(formData) {
 	try {
-		const response = await axios.post("api/auth/signup", formData);
+		const response = await axios.post("/api/auth/signup", formData);
 		toast.success("Signup successful");
 		return response.data;
 	} catch (e) {
@@ -15,7 +15,7 @@ export async function signup(formData) {
 
 export async function signin(formData) {
 	try {
-		const response = await axios.post("api/auth/signin", formData);
+		const response = await axios.post("/api/auth/signin", formData);
 		toast.success("Signin successful");
 		return response.data;
 	} catch (e) {
@@ -27,7 +27,7 @@ export async function signin(formData) {
 
 export async function logout() {
 	try {
-		const response = await axios.post("api/auth/logout", {});
+		const response = await axios.post("/api/auth/logout", {});
 		toast.success(response.data.message);
 		return "successful";
 	} catch (e) {
@@ -36,4 +36,3 @@ export async function logout() {
 		return null;
 	}
 }
-api;
