@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -17,6 +17,7 @@ import CancelBooking from "../../components/CancelBooking/CancelBooking";
 
 const BookGame = () => {
 	const dates = generateDates();
+	const location = useLocation();
 
 	const [selectedDate, setSelectedDate] = useState(dates[0]);
 	const [dayName, setDayName] = useState(
@@ -81,9 +82,19 @@ const BookGame = () => {
 	}, [loading]);
 
 	useEffect(() => {
-		getBookingsOfGeneratedDates(dates).then((booked) =>
-			setAlreadyBooked(booked),
-		);
+		getBookingsOfGeneratedDates(dates).then((booked) => {
+			const newBooking = location.state?.bookingData;
+			if (newBooking) {
+				const exists = booked.some((b) => b._id === newBooking._id);
+				if (!exists) {
+					setAlreadyBooked([...booked, newBooking]);
+				} else {
+					setAlreadyBooked(booked);
+				}
+			} else {
+				setAlreadyBooked(booked);
+			}
+		});
 		handleGetUserBookings();
 	}, []);
 

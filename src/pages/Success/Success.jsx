@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { IoMdArrowRoundBack } from "react-icons/io";
@@ -9,6 +9,7 @@ import "./Success.css";
 const Success = () => {
 	const [searchParams] = useSearchParams();
 	const { handleVerifyPaymentAndPaymentStatus } = useContext(PaymentContext);
+	const [bookingData, setBookingData] = useState(null);
 
 	useEffect(() => {
 		const base64 = searchParams.get("data");
@@ -18,7 +19,11 @@ const Success = () => {
 			const data = JSON.parse(atob(standardBase64));
 
 			//Now I have to send that data to the backend to verify signature and confirm status of payment
-			handleVerifyPaymentAndPaymentStatus(data);
+			const verifyPayment = async () => {
+				const verifiedBooking = await handleVerifyPaymentAndPaymentStatus(data);
+				setBookingData(verifiedBooking);
+			};
+			verifyPayment();
 		}
 	}, []);
 
@@ -30,7 +35,7 @@ const Success = () => {
 				</div>
 				<div className="text">
 					<span>Payment successful</span>
-					<Link to={"/book-game"}>
+					<Link to={"/book-game"} state={{ bookingData }}>
 						<IoMdArrowRoundBack />
 						Go Back
 					</Link>

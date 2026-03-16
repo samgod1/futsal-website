@@ -38,16 +38,15 @@ const PaymentProvider = ({ children }) => {
 		const bookingData = await verifyPaymentAndPaymentStatus(data);
 
 		if (!bookingData) {
-			return;
+			return null;
 		}
-
-		navigate("/book-game");
 
 		if (booking) {
 			setBooking([...booking, bookingData]);
 		} else {
 			setBooking([bookingData]);
 		}
+		return bookingData;
 	}
 
 	return (
