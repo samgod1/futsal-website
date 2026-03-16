@@ -3,15 +3,12 @@ import toast from "react-hot-toast";
 
 export async function initiatePayment(amount, day, time, date) {
 	try {
-		const response = await axios.post(
-			import.meta.env.VITE_BACKEND_URL + "/api/payment/initiate-payment",
-			{
-				amount,
-				day,
-				time,
-				date,
-			},
-		);
+		const response = await axios.post("/payment/initiate-payment", {
+			amount,
+			day,
+			time,
+			date,
+		});
 
 		window.location.href = response.data.message;
 	} catch (e) {
@@ -23,7 +20,7 @@ export async function initiatePayment(amount, day, time, date) {
 export async function verifyPaymentAndPaymentStatus(data) {
 	try {
 		const response = await axios.post(
-			import.meta.env.VITE_BACKEND_URL + "/api/payment/verify-payment",
+			"/payment/verify-payment",
 			{
 				decodedData: data,
 			},
@@ -42,7 +39,7 @@ export async function verifyPaymentAndPaymentStatus(data) {
 export async function handleFailure(transaction_uuid) {
 	try {
 		await axios.post(
-			import.meta.env.VITE_BACKEND_URL + "api/payment/failure",
+			"/payment/failure",
 			{
 				transaction_uuid: transaction_uuid,
 			},
